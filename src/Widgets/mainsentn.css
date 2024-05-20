@@ -1,0 +1,64 @@
+.sentnce {
+    text-align: center;
+    
+    background: transparent;
+    color: black;
+    font-weight: 300;
+    font-size: 32px;
+    padding-top: 10vh;
+    overflow: hidden;
+    direction: rtl; /* Added for RTL text direction */
+  }
+
+  mark {
+    background-color: transparent; /* Removes yellow background */
+    margin-left: 10px;
+    
+}
+  
+  .first-div {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: showup 7s infinite;
+  }
+  
+  .second-div {
+    width: 0px;
+    display: inline-block;
+    vertical-align: top; 
+    overflow: hidden;
+    white-space: nowrap;
+    animation: reveal 7s infinite;
+  }
+  
+  .second-div span {
+    margin-left: -355px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: slidein 7s infinite;
+  }
+  
+  @keyframes showup {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  @keyframes slidein {
+    0% { margin-left: -800px;}
+    20% { margin-left: -800px; }
+    35% { margin-left: 0px; }
+    100% { margin-left: 0px; }
+  }
+  
+  @keyframes reveal {
+    0% { opacity: 0; width: 0px; }
+    20% { opacity: 1; width: 0px; }
+    30% { width: 655px; }
+    80% { opacity: 1; }
+    100% { opacity: 0; width: 615px; }
+  }
+  
