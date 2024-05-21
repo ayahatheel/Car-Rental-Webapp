@@ -1,10 +1,12 @@
 .sentnce {
     text-align: center;
     
-    background: transparent;
-    color: black;
+    background-image: url('./Images/carbg.png'); /* Sets the background image */
+    background-size: cover;    
+     color: black;
     font-weight: 300;
     font-size: 32px;
+    height: 600px;
     padding-top: 10vh;
     overflow: hidden;
     direction: rtl; /* Added for RTL text direction */
