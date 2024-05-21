@@ -1,5 +1,6 @@
 import React from 'react';
 import './mainsentn.css'; 
+import Search from './Search';
 
 function Mainsentn() {
     return (
@@ -11,8 +12,8 @@ function Mainsentn() {
             بخطوات <mark style={{ fontWeight: 'bold', color: 'red' }}>سهلة</mark>
         </span>
     </div>
+    <Search/>
 </div>
-
     )
 }
 
