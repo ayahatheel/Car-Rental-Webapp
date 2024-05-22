@@ -17,18 +17,21 @@ const Search = ({ onSearch }) => {
   return (
     <Box display="flex" alignItems="center" gap={2}>
       <TextField
-        label="Search"
+        label="البحث"
         variant="outlined"
+        placeholder="ابحث هنا..."
         value={searchQuery}
         onChange={handleInputChange}
         fullWidth
+        sx={{ borderRadius: '25px' }} // Round corners
       />
       <Button
         variant="contained"
         color="primary"
+        sx={{ color: 'black', mr: 2, borderRadius: '25px' }} // Round corners
         onClick={handleSearch}
       >
-        Search
+        تسجيل الدخول
       </Button>
     </Box>
   );
