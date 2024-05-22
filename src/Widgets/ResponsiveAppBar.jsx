@@ -33,9 +33,9 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <div dir="rtl"> {/* Add dir="rtl" here */}
-      <AppBar position="static" sx={{ backgroundColor: '#EFF5FD', boxShadow: 'none' }}>
-        <Container maxWidth="xl">
+    <div dir="rtl" className='navbar'> {/* Add dir="rtl" here */}
+      <AppBar  position="static" sx={{ backgroundColor: '#EFF5FD', boxShadow: 'none' }}>
+        <Container >
           <Toolbar disableGutters>
             <Typography
               variant="h6"
