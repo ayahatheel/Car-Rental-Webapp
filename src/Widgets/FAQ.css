@@ -1,5 +1,25 @@
+.faq-box-container{
+    margin-left: 70px;
+    margin-bottom: 20px;
+    background-color: palegoldenrod;
+}
+
+.HFAQ{
+    font-size: 2EM;
+    margin: 0;
+    padding: 0;
+}
+
+.PFAQ{
+    font-size: 1EM;
+    margin: 0;
+    font-weight: bold;
+    padding: 0;
+}
+
 .faq-box {
     padding: 35px;
+    margin-top: 20PX;
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid #FFFFFF;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -7,8 +27,7 @@
     display: flex;
     flex-direction: column;
     width: 730px;
-    margin-left: 70px;
-    margin-bottom: 20px;
+   
 }
 
 .faq-box:last-child {
@@ -18,14 +37,14 @@
 .faq-box-question {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center vertically */
+    align-items: center; 
     cursor: pointer;
     user-select: none;
 }
 
 .faq-box-question h4 {
     color: black;
-    margin: 0; /* Ensure no margin pushes the text out of center */
+    margin: 0;
 }
 
 .faq-box-answer {
@@ -66,3 +85,19 @@
 .faq-box-question.active .faq-box-icon::after {
     transform: rotate(0deg);
 }
+
+
+.faq-box-footer {
+    display: flex;
+    margin-left: 200PX;
+    align-items: center;
+    margin-top: 20px; 
+  }
+  
+  .faq-box-footer p {
+    font-size: 1EM;
+    margin: 0;
+    font-weight: bold;
+    padding: 0; 
+    margin-right: 20PX; 
+  }
