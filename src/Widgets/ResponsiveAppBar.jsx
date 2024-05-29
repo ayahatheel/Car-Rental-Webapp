@@ -9,39 +9,38 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/Menu';
+import { Link } from 'react-router-dom';
 
-const pages = ['عرض السيارات', 'خدماتنا', 'تواصل معنا'];
-// const settings = ['الملف الشخصي', 'الحساب', 'لوحة القيادة', 'تسجيل الخروج'];
+const pages = [
+  { name: 'الرئيسية', link: '/' },
+  { name: 'عرض السيارات', link: '/carlisting' },
+  { name: 'خدماتنا', link: '/services' },
+  { name: 'تواصل معنا', link: '/contactus' },
+  { name: 'تسجيل الدخول', link: '/login' },
+  { name: 'تسجيل مستخدم جديد', link: '/signup' },
+];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <div dir="rtl" className='navbar'> {/* Add dir="rtl" here */}
-      <AppBar  position="static" sx={{ backgroundColor: '#EFF5FD', boxShadow: 'none' }}>
-        <Container >
+    <div dir="rtl" className="navbar">
+      <AppBar position="static" sx={{ backgroundColor: '#EFF5FD', boxShadow: 'none' }}>
+        <Container>
           <Toolbar disableGutters>
             <Typography
               variant="h6"
               noWrap
               component="a"
-              href="#"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -52,8 +51,8 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-IraqiWheels            
-</Typography>
+              IraqiWheels
+            </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -85,44 +84,41 @@ IraqiWheels
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" sx={{ color: 'black' }}>{page}</Typography>
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Typography
+                      component={Link}
+                      to={page.link}
+                      textAlign="center"
+                      sx={{ color: 'black', textDecoration: 'none' }}
+                    >
+                      {page.name}
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
-            {/* <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontWeight: 700,
-                color: 'black',
-                textDecoration: 'none',
-              }}
-            >
-         </Typography> */}
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
+                  component={Link}
+                  to={page.link}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Button sx={{ color: 'black', mr: 2 }}>تسجيل الدخول</Button>
-              <Button sx={{ color: 'white', width:'150px', backgroundColor: '#E90224', borderRadius: '10px' }}>
-تسجيل مستخدم جديد              </Button>
+              <Button component={Link} to="/login" sx={{ color: 'black', mr: 2 }}>
+                تسجيل الدخول
+              </Button>
+              <Button component={Link} to="/signup" sx={{ color: 'white', width: '150px', backgroundColor: '#E90224', borderRadius: '10px' }}>
+                تسجيل مستخدم جديد
+              </Button>
             </Box>
           </Toolbar>
         </Container>
