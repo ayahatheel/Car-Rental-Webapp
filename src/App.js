@@ -1,23 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import ResponsiveAppBar from './Widgets/ResponsiveAppBar';
-import Mainsentn from './Widgets/Mainsentn';
-import Search from './Widgets/Search';
-import FAQ from './Widgets/FAQ';
-
-
+import "./App.css";
+import Layout from "./components/Layout";
 
 function App() {
-
   return (
-    
     <div className="App">
-
-     <ResponsiveAppBar/>
-    
-<Mainsentn/>
-<FAQ/>
-
+      <Layout/>
     </div>
   );
 }

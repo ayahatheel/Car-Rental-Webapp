@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './mainsentn.css'; 
-import Search from './Search';
 import  SearchBar  from './SearchBar'; 
 import  SearchResultsList from './SearchResultsList'; 
 
