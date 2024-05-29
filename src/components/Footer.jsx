@@ -1,9 +1,10 @@
 import React from 'react'
+import Footerbar from '../Widgets/Footerbar'
 
 function Footer() {
     return (
         <>
-        <h1>footer</h1>
+        <Footerbar/>
         </>
     )
 }
