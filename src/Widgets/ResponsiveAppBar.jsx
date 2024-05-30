@@ -12,12 +12,9 @@ import MenuItem from '@mui/material/Menu';
 import { Link } from 'react-router-dom';
 
 const pages = [
-  { name: 'الرئيسية', link: '/' },
   { name: 'عرض السيارات', link: '/carlisting' },
   { name: 'خدماتنا', link: '/services' },
   { name: 'تواصل معنا', link: '/contactus' },
-  { name: 'تسجيل الدخول', link: '/login' },
-  { name: 'تسجيل مستخدم جديد', link: '/signup' },
 ];
 
 function ResponsiveAppBar() {
