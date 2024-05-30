@@ -1,0 +1,89 @@
+.car-card {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: right; /* Align text to the right */
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    direction: rtl; /* Right-to-left direction for Arabic text */
+  }
+  
+  .car-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .car-image {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover .car-image {
+    transform: scale(1.05);
+  }
+  
+  .car-card h2 {
+    margin: 10px 15px;
+    font-size: 1.2em;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    margin: 5px 15px;
+  }
+  
+  .star {
+    color: #f4c150;
+    margin-left: 5px; /* Adjusted for RTL layout */
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .details span {
+    display: block;
+  }
+  
+  .super {
+    font-weight: bold;
+  }
+  
+  .price {
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .price span {
+    margin: 0 5px;
+  }
+  
+  .rent-button {
+    background: #e63946;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    transition: background 0.3s ease;
+  }
+  
+  .rent-button:hover {
+    background: #d62839;
+  }
+  
