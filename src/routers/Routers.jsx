@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Singup from "../pages/Singup";
 import Carderails from "../pages/Carderails";
 import CarCard from "../Widgets/CarCard";
+import Contactus from "../pages/Contcatus";
 import { BrowserRouter } from 'react-router-dom';
 
 const Routers = () => {
@@ -15,6 +16,7 @@ const Routers = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Singup />} />
       <Route path="/Carderails" component={Carderails} />
+      <Route path="/Contactus" component={Contactus} />
       {/* <Route path="/carcard" element={<Homepage />} /> */}
       {/* <Route path="/cars/:slug" element={<CarDetails />} /> */}
       {/* <Route path="*" element={<NotFound />} /> */}

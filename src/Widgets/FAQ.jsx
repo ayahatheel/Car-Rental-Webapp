@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './FAQ.css'; // Ensure this file exists to style the component
-import Button from '@mui/material/Button'; // Assuming you are using Material-UI for the button
+import React, { useState } from "react";
+import "./FAQ.css";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -11,35 +12,44 @@ const FAQ = () => {
 
   const faqItems = [
     {
-      question: "What is a ‘Credit’?",
-      answer: "Each creative/banner you download to your computer to use on your campaigns equals to 1 credit. Based on the package you select, you will have 10, 100 or an unlimited number of credits that renews every month."
+      question: "ما هو التأمين وهل يجب عليّ شراؤه؟",
+      answer:
+        "التأمين هو خدمة اختيارية تقدم لحماية السيارة والركاب في حال وقوع حادث. يُفضل شراء التأمين وفقًا لسياسة الوكالة.",
     },
     {
-      question: "What does ‘Web Development’ mean?",
-      answer: "Web development is the work involved in developing a website for the Internet or an intranet. This can range from developing a simple single static page of plain text to complex web applications."
+      question: "ما هي المستندات المطلوبة لاستئجار السيارة؟",
+      answer:
+        "تعتمد المستندات المطلوبة على سياسة كل وكالة لكن عادةً ما تشمل بطاقة الهوية الوطنية أو جواز السفر ورخصة القيادة.",
     },
     {
-      question: "What is a ‘User’?",
-      answer: "A user is an individual who uses a computer or network service. Users of computer systems and software products generally lack the technical expertise required to fully understand how they work."
+      question: "هل يمكنني تأجير سيارة بدون بطاقة ائتمان؟",
+      answer:
+        "تعتمد الشروط على سياسة الوكالة. بعض الوكالات تسمح بالتأجير بدون بطاقة ائتمان ولكن قد يتطلب ذلك إجراءات إضافية.",
     },
     {
-      question: "Do I have to connect ad accounts to use the website?",
-      answer: "No, you do not have to connect ad accounts to use the website. However, connecting ad accounts can provide additional features and benefits."
+      question: "كيف يتم دفع رسوم الاستئجار؟",
+      answer:
+        "يمكن دفع رسوم الاستئجار عبر بطاقة ائتمان أو نقدًا، وفي بعض الحالات يمكن الدفع عبر تطبيقات الدفع الإلكتروني.",
     },
     {
-      question: "What do you mean by frontend?",
-      answer: "Frontend refers to the client-side of a web application. It is the part of the website or application that users interact with directly. The frontend is usually built with HTML, CSS, and JavaScript."
-    }
+      question: "هل يوجد سن القيادة الحد الأدنى لاستئجار السيارة؟",
+      answer:
+        "نعم، توجد شروط عمرية لاستئجار السيارة وتختلف حسب سياسة الوكالة، وعادة ما يكون الحد الأدنى للعمر 21 عامًا.",
+    },
   ];
 
   return (
     <div className="faq-box-container">
-      <h5 className='HFAQ'>Frequently Asked Questions</h5>
-      <p className='PFAQ'>Get all the information you need for our car rental services below.</p>
+      <h5 className="HFAQ">الأسئلة الشائعة</h5>
+      <p className="PFAQ">
+        احصل على كل المعلومات التي تحتاجها لخدمات تأجير السيارات لدينا أدناه.
+      </p>
       {faqItems.map((item, index) => (
         <div className="faq-box" key={index}>
           <div
-            className={`faq-box-question ${activeIndex === index ? 'active' : ''}`}
+            className={`faq-box-question ${
+              activeIndex === index ? "active" : ""
+            }`}
             onClick={() => handleToggle(index)}
           >
             <h4>{item.question}</h4>
@@ -47,17 +57,27 @@ const FAQ = () => {
           </div>
           <div
             className="faq-box-answer"
-            style={{ maxHeight: activeIndex === index ? '100px' : '0px' }}
+            style={{ maxHeight: activeIndex === index ? "100px" : "0px" }}
           >
             <p>{item.answer}</p>
           </div>
         </div>
       ))}
       <div className="faq-box-footer">
-        <p>Your question is not here?</p>
-        <Button sx={{ color: 'white', width:'150px', backgroundColor: '#E90224', borderRadius: '10px' }}>
-          Contact Us
-        </Button>
+        <p>سؤالك ليس هنا؟</p>
+        <Link to="/Contcatus">
+          {" "}
+          <Button
+            sx={{
+              color: "white",
+              width: "150px",
+              backgroundColor: "#E90224",
+              borderRadius: "10px",
+            }}
+          >
+            تواصل معنا{" "}
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -1,17 +1,19 @@
-.faq-box-container{
-    margin-left: 70px;
-    margin-bottom: 20px;
+.faq-box-container {
+    margin-right: 70px;
+    margin-bottom: 80px;
     background-color: transparent;
+    direction: rtl;
+    text-align: right;
 }
 
-.HFAQ{
-    font-size: 2EM;
+.HFAQ {
+    font-size: 2em;
     margin: 0;
     padding: 0;
 }
 
-.PFAQ{
-    font-size: 1EM;
+.PFAQ {
+    font-size: 1em;
     margin: 0;
     font-weight: bold;
     padding: 0;
@@ -19,7 +21,7 @@
 
 .faq-box {
     padding: 35px;
-    margin-top: 20PX;
+    margin-top: 20px;
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid #FFFFFF;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -27,7 +29,6 @@
     display: flex;
     flex-direction: column;
     width: 730px;
-   
 }
 
 .faq-box:last-child {
@@ -66,7 +67,7 @@
     position: relative;
     width: 8px;
     height: 8px;
-    margin-left: auto;
+    margin-right: auto;
     border: solid black;
     border-width: 0 3px 3px 0;
     padding: 2px;
@@ -86,18 +87,17 @@
     transform: rotate(0deg);
 }
 
-
 .faq-box-footer {
     display: flex;
-    margin-left: 200PX;
+    margin-right: 200px;
     align-items: center;
     margin-top: 20px; 
-  }
-  
-  .faq-box-footer p {
-    font-size: 1EM;
+}
+
+.faq-box-footer p {
+    font-size: 1em;
     margin: 0;
     font-weight: bold;
     padding: 0; 
-    margin-right: 20PX; 
-  }
+    margin-left: 20px;
+}
