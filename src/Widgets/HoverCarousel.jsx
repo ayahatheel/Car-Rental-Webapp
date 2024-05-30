@@ -72,6 +72,7 @@ const HoverCarousel = ({ images }) => {
         <ul>
           {images.map((image, index) => (
             <li key={index}>
+              {/* Specify the image URL directly */}
               <img src={image} alt={`Image ${index}`} />
             </li>
           ))}
