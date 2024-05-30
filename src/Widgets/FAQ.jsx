@@ -70,7 +70,7 @@ const FAQ = () => {
           <Button
             sx={{
               color: "white",
-              width: "150px",
+              width: "210px",
               backgroundColor: "#E90224",
               borderRadius: "10px",
             }}

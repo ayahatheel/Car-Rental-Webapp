@@ -9,6 +9,7 @@ const Footerbar = () => {
     <Box
       sx={{
         display: 'flex',
+        textAlign: 'center',
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#F2F8FF',
@@ -18,10 +19,10 @@ const Footerbar = () => {
         width: '100%',
       }}
     >
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="body2" color="textSecondary" style={{ textAlign: 'center' }}>
         IraqiWeels @ 2024. جميع الحقوق محفوظة.
       </Typography>
-      <Box>
+      {/* <Box>
         <IconButton href="https://www.instagram.com" target="_blank" color="inherit">
           <InstagramIcon />
         </IconButton>
@@ -31,7 +32,7 @@ const Footerbar = () => {
         <IconButton href="https://www.facebook.com" target="_blank" color="inherit">
           <FacebookIcon />
         </IconButton>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
