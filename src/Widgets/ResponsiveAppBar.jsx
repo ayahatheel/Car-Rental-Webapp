@@ -5,11 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import Contactus from '../pages/Contcatus';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 const pages = [
@@ -37,16 +36,16 @@ function ResponsiveAppBar() {
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.0rem',
                 color: 'black',
                 textDecoration: 'none',
+                fontFamily: 'Tajawal, sans-serif',
               }}
             >
               IraqiWheels
@@ -87,7 +86,7 @@ function ResponsiveAppBar() {
                       component={Link}
                       to={page.link}
                       textAlign="center"
-                      sx={{ color: 'black', textDecoration: 'none' }}
+                      sx={{ color: 'black', textDecoration: 'none', fontFamily: 'Tajawal, sans-serif' }}
                     >
                       {page.name}
                     </Typography>
@@ -103,7 +102,7 @@ function ResponsiveAppBar() {
                   component={Link}
                   to={page.link}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'black', display: 'block' }}
+                  sx={{ my: 2, color: 'black', display: 'block', fontFamily: 'Tajawal, sans-serif' }}
                 >
                   {page.name}
                 </Button>
@@ -111,10 +110,10 @@ function ResponsiveAppBar() {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Button component={Link} to="/login" sx={{ color: 'black', mr: 2 }}>
+              <Button component={Link} to="/login" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
                 تسجيل الدخول
               </Button>
-              <Button component={Link} to="/signup" sx={{ color: 'white', width: '150px', backgroundColor: '#E90224', borderRadius: '10px' }}>
+              <Button component={Link} to="/signup" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
                 تسجيل مستخدم جديد
               </Button>
             </Box>
