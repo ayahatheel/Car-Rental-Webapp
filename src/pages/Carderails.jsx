@@ -1,6 +1,7 @@
 import React from 'react'
 import HoverCarousel from '../Widgets/HoverCarousel'
 import { Link } from 'react-router-dom'
+import CarRentalfomr from '../Widgets/CarRentalform';
 
 
 const images = [
@@ -14,7 +15,10 @@ function Carderails() {
     return (
         <>
             <HoverCarousel images={images} />
+            <CarRentalfomr/>
         </>
+
+
     )
 }
 
