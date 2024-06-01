@@ -1,0 +1,142 @@
+.feedback-section {
+    padding: 20px;
+    text-align: center;
+    direction: rtl;
+    margin-left: 84px;
+    margin-right: 84px;
+    position: relative;
+  }
+  
+  .feedback-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .feedback-card {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: right;
+  }
+  
+  .feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-name {
+    font-weight: bold;
+  }
+  
+  .feedback-rating .star {
+    color: #f5c518;
+  }
+  
+  .leave-feedback-button,
+  .submit-feedback-button,
+  .show-all-feedbacks-button,
+  .go-back-button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .leave-feedback-button:hover,
+  .submit-feedback-button:hover,
+  .show-all-feedbacks-button:hover,
+  .go-back-button:hover {
+    background-color: #d40813;
+  }
+  
+  .show-all-feedbacks-button {
+    background-color: white;
+    color: #e50914;
+    border: 1px solid #e50914;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .show-all-feedbacks-button:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feedback-input {
+    width: 80%;
+    padding: 10px;
+font-size: 1em;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: right;
+  }
+  
+  .rating-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .feedback-textarea {
+    width: 80%;
+    font-family: 'Tajawal', sans-serif !important;
+font-size: 1em;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  
+  .feedback-rating .star {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .feedback-rating .star:hover,
+  .feedback-rating .star:hover ~ .star {
+    color: #f5c518;
+  }
+  
+  .feedback-content {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .feedback-content.hidden {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+  }
+  
+  .feedback-content.visible {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+  
