@@ -1,10 +1,10 @@
 
 import React from 'react';
-import './CarCard.css'; // Import the CSS file for styling
+import './CarCard.css'; 
 
 const CarCard = () => {
   const carData = {
-    image: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250', // Placeholder image URL
+    image: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250', 
     name: 'جاكوار XE L P250',
     rating: 4.8,
     reviews: 36,
