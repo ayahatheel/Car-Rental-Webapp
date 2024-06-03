@@ -7,6 +7,7 @@ import Carderails from "../pages/Carderails";
 import CarCard from "../Widgets/CarCard";
 import Contactus from "../pages/Contcatus";
 import { BrowserRouter } from 'react-router-dom';
+import Services from "../pages/Services";
 
 const Routers = () => {
   return (
@@ -17,6 +18,8 @@ const Routers = () => {
       <Route path="/signup" element={<Singup />} />
       <Route path="/Carderails" element={<Carderails />} /> 
       <Route path="/Contactus" element={<Contactus/>} />
+      <Route path="/Services" element={<Services/>} />
+
       {/* <Route path="/carcard" element={<Homepage />} /> */}
       {/* <Route path="/cars/:slug" element={<CarDetails />} /> */}
       {/* <Route path="*" element={<NotFound />} /> */}
