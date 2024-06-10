@@ -5,7 +5,7 @@ import FAQ from "../../src/Widgets/FAQ";
 import CarCard from "../Widgets/CarCard";
 import Categories from "../Widgets/Categories";
 import Testimonial from "../Widgets/Testimonial";
-
+import Chat from "../Widgets/Chat";
 function Homepage() {
   return (
     <>
@@ -15,7 +15,9 @@ function Homepage() {
         <CarCard />
       </Link>
       <FAQ />
+      <Chat/>
       {/* <Testimonial/> */}
+      
     </>
   );
 }
