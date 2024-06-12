@@ -11,12 +11,14 @@
 .HFAQ {
     font-size: 2em;
     margin: 0;
+    margin-right: 70px;
     padding: 0;
 }
 
 .PFAQ {
     font-size: 1em;
     margin: 0;
+    margin-right: 70px;
     font-weight: bold;
     padding: 0;
 }
@@ -103,4 +105,17 @@
     font-weight: bold;
     padding: 0; 
     margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .faq-box {
+    width: 90%; /* Make the FAQ box full width */
+    margin-right: 0; /* Remove right margin */
+    padding: 20px; /* Adjust padding */
+  }
+
+  .faq-box-footer {
+    margin-right: 0; /* Remove right margin */
+    margin-left: 20px; /* Add left margin */
+  }
 }
