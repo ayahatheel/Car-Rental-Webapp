@@ -65,7 +65,7 @@ const FAQ = () => {
       ))}
       <div className="faq-box-footer">
         <p>سؤالك ليس هنا؟</p>
-        <Link to="/Contcatus">
+        <Link component={Link} to="/Contactus">
           <Button
             sx={{
               color: "white",

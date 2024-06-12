@@ -81,3 +81,61 @@
 .login-link {
   text-align: left;
 }
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .signup-form {
+    padding: 20px;
+    margin-top: 80px;
+  }
+
+  .signup-form h2 {
+    font-size: 20px;
+  }
+
+  .signup-form .name-fields {
+    flex-direction: column;
+  }
+
+  .signup-form input {
+    padding: 8px;
+    width: 95%;
+  }
+
+  .signup-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    height: auto;
+    padding: 20px;
+  }
+
+  .signup-form {
+    padding: 15px;
+    margin-top: 60px;
+  }
+
+  .signup-form h2 {
+    font-size: 18px;
+  }
+
+  .signup-form p {
+    font-size: 14px;
+  }
+
+  .signup-form input {
+    padding: 8px;
+    width: 95%;
+  }
+
+  .signup-form button {
+    font-size: 14px;
+  }
+
+  .login-link {
+    text-align: center;
+  }
+}

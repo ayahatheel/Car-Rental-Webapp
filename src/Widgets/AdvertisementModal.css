@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ccc; /* Light gray border */
+    border-bottom: 1px solid #ccc; 
   }
   
   .close-button {
@@ -26,7 +26,7 @@
   
   @media (max-width: 768px) {
     .AdvertisementModal {
-      width: 80%; /* Adjust width for smaller screens */
-      height: 50%; /* Adjust height for smaller screens */
+      width: 80%; 
+      height: 50%; 
     }
   }

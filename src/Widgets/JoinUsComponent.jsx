@@ -7,11 +7,12 @@ const JoinUsComponent = () => {
     <Container maxWidth="lg" sx={{ marginTop: '2rem', textAlign: 'center' }}>
       <Box 
         sx={{ 
-          padding: '2rem', 
-          backgroundColor: '#f0f0f0', 
-          borderRadius: '8px', 
+          padding: '3rem 2rem', 
+          backgroundColor: '#ffffff', 
+          borderRadius: '16px', 
           marginBottom: '2rem',
-          textAlign: 'center'
+          textAlign: 'center',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
         }}
       >
         <Typography variant="h4" component="h1" gutterBottom>
@@ -20,15 +21,19 @@ const JoinUsComponent = () => {
         <Typography variant="body1" paragraph>
           هل تملك سيارة وتريد تأجيرها؟ انضم إلينا الآن وابدأ في كسب المال من خلال تأجير سيارتك عبر منصتنا.
         </Typography>
+        <Button variant="contained" color="primary" component={Link} to="/Contactus" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
+        اتصل بنا
+      </Button>
       </Box>
 
       <Box 
         sx={{ 
-          padding: '2rem', 
-          backgroundColor: '#e0e0e0', 
-          borderRadius: '8px', 
+          padding: '3rem 2rem', 
+          backgroundColor: '#f7f7f7', 
+          borderRadius: '16px', 
           marginBottom: '2rem',
-          textAlign: 'center'
+          textAlign: 'center',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
         }}
       >
         <Typography variant="h4" component="h1" gutterBottom>
@@ -37,27 +42,12 @@ const JoinUsComponent = () => {
         <Typography variant="body1" paragraph>
           نحن نبحث دائمًا عن شركاء جدد. إذا كنت تدير وكالة تأجير سيارات وترغب في الانضمام إلى شبكتنا، تواصل معنا الآن.
         </Typography>
-      </Box>
-
-      <Box 
-        sx={{ 
-          padding: '2rem', 
-          backgroundColor: '#d0d0d0', 
-          borderRadius: '8px',
-          textAlign: 'center'
-        }}
-      >
-        <Typography variant="h4" component="h1" gutterBottom>
-          اتصل بنا
-        </Typography>
-        <Typography variant="body1" paragraph>
-          إذا كانت لديك أي استفسارات أو تحتاج إلى مزيد من المعلومات، لا تتردد في الاتصال بنا.
-        </Typography>
-      </Box>
-
-      <Button variant="contained" color="primary" component={Link} to="/contact" sx={{ marginTop: '2rem' }}>
+        <Button variant="contained" color="primary" component={Link} to="/Contactus" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
         اتصل بنا
       </Button>
+      </Box>
+
+    
     </Container>
   );
 };
