@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  
+  html, body { height: 100%; } 
+  
+  body { background: #333; }
+  
+  .slider {
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    padding-top: 63%;
+    position: relative;
+    border: 8px solid #fff;
+  }
+  
+  .slider input[type="radio"] {
+    display: none;
+  }
+  
+  .slider .trigger {
+    height: 15px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 8px;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    z-index: 1;
+  }
+  
+  .slider .trigger label {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .slider #slide1:checked ~ .trigger label[for="slide1"],
+  .slider #slide2:checked ~ .trigger label[for="slide2"],
+  .slider #slide3:checked ~ .trigger label[for="slide3"],
+  .slider #slide4:checked ~ .trigger label[for="slide4"],
+  .slider #slide5:checked ~ .trigger label[for="slide5"] {
+    background: #fff;
+  }
+  
+  .slider #slide2:checked ~ .gallery { transform: translateX(-20%); }
+  .slider #slide3:checked ~ .gallery { transform: translateX(-40%); }
+  .slider #slide4:checked ~ .gallery { transform: translateX(-60%); }
+  .slider #slide5:checked ~ .gallery { transform: translateX(-80%); }
+  
+  .slider label:last-child { margin: 0; }
+  
+  .slider .arrows {
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .slider .arrows i {
+    cursor: pointer;
+    text-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+  }
+  
+  .slider .arrows i.fa-angle-right:hover {
+    -webkit-animation: click-right 0.7s linear;
+            animation: click-right 0.7s linear;
+  }
+  
+  .slider .arrows i.fa-angle-left:hover {
+    -webkit-animation: click-left 0.7s linear;
+            animation: click-left 0.7s linear;
+  }
+  
+  .slider .gallery {
+    width: 500%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: all .5s ease-in-out;
+  }
+  
+  .slider figure {
+    width: 20%;
+    height: 100%;
+    float: left;
+    position: relative;
+  }
+  
+  .slider figure figcaption {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    text-align: justify;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto", sans-serif;
+    font-size: 0.85em;
+    z-index: 1;
+  }
+  
+  .slider figure img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media only screen and (min-width: 860px) {
+    .slider {width: 70%; padding-top: 46%; margin: 0 auto;}
+    .slider figure img { width: 100%; }
+  }
+  
+  @-webkit-keyframes click-right {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(13px); }
+    50% { transform: translateX(0px); }
+    75% { transform: translateX(13px); }
+    100% { transform: translateX(0px); }
+  }
+  
+  @keyframes click-right {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(13px); }
+    50% { transform: translateX(0px); }
+    75% { transform: translateX(13px); }
+    100% { transform: translateX(0px); }
+  }
+  
+  @-webkit-keyframes click-left {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(-13px); }
+    50% { transform: translateX(0px); }
+    75% { transform: translateX(-13px); }
+    100% { transform: translateX(0px); }
+  }
+  
+  @keyframes click-left {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(-13px); }
+    50% { transform: translateX(0px); }
+    75% { transform: translateX(-13px); }
+    100% { transform: translateX(0px); }
+  }
+  
+  /* ========== OPTIONAL ========== */
+  /* .slider figure:before {
+    content: "";
+    border: 20px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: -webkit-linear-gradient(rgba(157,80,187, 0.65), rgba(110,72,170, 0.65));
+    background-image: linear-gradient(rgba(157,80,187, 0.65), rgba(110,72,170, 0.65));
+    top: 0;
+    left: 0;
+    z-index: 1;
+  } */

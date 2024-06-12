@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 const pages = [
   { name: 'الرئيسية', link: '/' },
-  { name: 'عرض السيارات', link: '/carlisting' },
+  { name: 'عرض السيارات', link: '/Carlisting' },
   { name: 'خدماتنا', link: '/services' },
   { name: 'تواصل معنا', link: '/Contactus' },
 ];
