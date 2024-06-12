@@ -7,10 +7,12 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Testimonial from "../Widgets/Testimonial";
 import Chat from "../Widgets/Chat";
+import AdvertisementModal from "../Widgets/AdvertisementModal";
 
 function Homepage() {
   return (
     <>
+    <AdvertisementModal/>
       <Mainsentn />
       <Categories />
       <div className="card-grid">
