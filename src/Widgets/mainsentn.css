@@ -1,19 +1,18 @@
 .sentnce {
     text-align: center;
-    
-    background-image: url('./Images/carbg.png'); /* Sets the background image */
+    background-image: url('./Images/carbg.png'); 
     background-size: cover;    
      color: black;
     font-weight: 300;
     font-size: 32px;
-    height: 600px;
+    height: 450px;
     padding-top: 10vh;
     overflow: hidden;
-    direction: rtl; /* Added for RTL text direction */
+    direction: rtl;
   }
 
   mark {
-    background-color: transparent; /* Removes yellow background */
+    background-color: transparent; 
     margin-left: 10px;
     
 }
@@ -64,3 +63,32 @@
     100% { opacity: 0; width: 705px; }
   }
   
+  
+
+@media (max-width: 480px) {
+  .sentnce {
+      font-size: 18px;
+      height: 200px;
+      background-image: url('./Images/faqbg.png'); 
+      padding-top: 5vh;
+  }
+
+  .second-div span {
+      margin-left: -150px;
+  }
+
+  @keyframes slidein {
+      0% { margin-left: -300px;}
+      20% { margin-left: -300px; }
+      35% { margin-left: 0px; }
+      100% { margin-left: 0px; }
+  }
+
+  @keyframes reveal {
+      0% { opacity: 0; width: 0px; }
+      20% { opacity: 1; width: 0px; }
+      30% { width: 100px; }
+      80% { opacity: 1; }
+      100% { opacity: 0; width: 140px; }
+  }
+}

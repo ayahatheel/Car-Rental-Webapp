@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 const pages = [
+  { name: 'الرئيسية', link: '/' },
   { name: 'عرض السيارات', link: '/carlisting' },
   { name: 'خدماتنا', link: '/services' },
   { name: 'تواصل معنا', link: '/Contactus' },
@@ -58,7 +59,7 @@ function ResponsiveAppBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="red"
               >
                 <MenuIcon />
               </IconButton>
@@ -85,7 +86,7 @@ function ResponsiveAppBar() {
                     <Typography
                       component={Link}
                       to={page.link}
-                      textAlign="center"
+                      textAlign="left"
                       sx={{ color: 'black', textDecoration: 'none', fontFamily: 'Tajawal, sans-serif' }}
                     >
                       {page.name}
