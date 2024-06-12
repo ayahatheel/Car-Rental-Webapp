@@ -28,3 +28,34 @@ input:focus {
   color: #E90224;
   height: 15px;
 }
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .input-wrapper {
+    width: 70%;
+    height: 2.25rem;
+    padding: 0 10px;
+  }
+
+  input {
+    font-size: 1rem;
+    margin-left: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-wrapper {
+    width: 70%;
+    height: 2rem;
+    padding: 0 5px;
+  }
+
+  input {
+    font-size: 0.875rem;
+    margin-left: 2px;
+  }
+
+  #search-icon {
+    height: 12px;
+  }
+}

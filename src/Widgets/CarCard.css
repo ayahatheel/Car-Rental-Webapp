@@ -1,88 +1,124 @@
+
 .car-card {
-    width: 300px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: right; /* Align text to the right */
-    margin: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    direction: rtl; /* Right-to-left direction for Arabic text */
-  }
-  
-  .car-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .car-image {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .car-card:hover .car-image {
-    transform: scale(1.05);
-  }
-  
-  .car-card h2 {
-    margin: 10px 15px;
-    font-size: 1.2em;
-  }
-  
-  .rating {
-    display: flex;
-    align-items: center;
-    margin: 5px 15px;
-  }
-  
-  .star {
-    color: #f4c150;
-    margin-left: 5px; /* Adjusted for RTL layout */
-  }
-  
-  .details {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .details span {
-    display: block;
-  }
-  
-  .super {
-    font-weight: bold;
-  }
-  
-  .price {
-    padding: 10px 15px;
-    font-size: 1.2em;
-    color: #333;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .price span {
-    margin: 0 5px;
-  }
-  
-  .rent-button {
-    background: #e63946;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 0 0 10px 10px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1em;
-    transition: background 0.3s ease;
-  }
-  
-  .rent-button:hover {
-    background: #d62839;
-  }
-  
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: right;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  direction: rtl;
+  margin: 5px; /* Increased margin for better spacing */
+  padding: 5px; /* Smaller padding for compact design */
+  width: 260px; /* Smaller card width */
+  height: 390px; /* Smaller card height */
+}
+
+.car-card:hover {
+  transform: translateY(-5px); /* Reduced hover translation */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased hover shadow */
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover .car-image {
+  transform: scale(1.02); /* Slight hover scale */
+}
+
+.car-card h2 {
+  margin: 5px 10px; /* Adjusted heading margin */
+  font-size: 1em; /* Smaller font size */
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin: 3px 10px; /* Adjusted margin */
+}
+
+.star {
+  color: #f4c150;
+  margin-left: 3px; /* Adjusted margin */
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px; /* Smaller padding */
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.details span {
+  display: block;
+}
+
+.super {
+  font-weight: bold;
+}
+
+.price {
+  padding: 5px 10px; /* Smaller padding */
+  font-size: 1em; /* Smaller font size */
+  color: #333;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.price span {
+  margin: 0 3px; /* Adjusted margin */
+}
+
+.rent-button {
+  background: #e63946;
+  color: #fff;
+  padding: 5px;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.9em; /* Smaller font size */
+  transition: background 0.3s ease;
+}
+
+.rent-button:hover {
+  background: #d62839;
+}
+
+.card-grid {
+  display: flex; /* Changed from grid to flex */
+  flex-wrap: wrap; /* Wrap items */
+  justify-content: center; /* Center items horizontally */
+  gap: 20px; /* Reduced gap */
+}
+
+.card-grid-item {
+  text-decoration: none;
+  color: inherit;
+  /* Additional styling for each grid item */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px;
+}
+
+.load-button {
+  background-color: white; /* Gray background */
+  color: black; /* Black text color */
+  border: 1px solid gray; /* Thin gray border */
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.load-button:hover {
+  background-color: white; /* Maintain gray background on hover */
+  border-color: #d62839; /* Red border on hover */
+}
