@@ -1,4 +1,6 @@
 .navbar {
     margin-left: 130PX;
     margin-right: 60PX;
+    position: fixed;
+
 }
