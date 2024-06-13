@@ -1,176 +1,135 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    font-size: 100%;
-    text-decoration: none;
-    box-sizing: border-box;
+.slideshow-container {
+  max-width: 1150px;
+  height: 250px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  margin-top: 30px;
+  background-color: white; 
+  border: 1px solid lightgray; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.mySlides {
+  display: none;
+}
+
+.mySlides.active {
+  display: block;
+}
+
+
+.mySlides img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: transparent; 
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.next {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+  color: white; 
+  
+}
+
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin-top: 40px;
+  margin: 10px 2px;
+  background-color: lightgray; 
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: red; 
+}
+
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from { opacity: .4 }
+  to { opacity: 1 }
+}
+
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 200px;
   }
   
-  html, body { height: 100%; } 
-  
-  body { background: #333; }
-  
-  .slider {
-    width: 100%;
-    height: 1px;
-    overflow: hidden;
-    padding-top: 63%;
-    position: relative;
-    border: 8px solid #fff;
+  .mySlides img {
+    height: 200px; 
   }
   
-  .slider input[type="radio"] {
-    display: none;
+  .prev, .next {
+    padding: 10px; 
+    font-size: 16px; 
   }
   
-  .slider .trigger {
-    height: 15px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    border-radius: 8px;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 15px;
-    z-index: 1;
+  .text {
+    font-size: 12px; 
   }
   
-  .slider .trigger label {
-    width: 15px;
-    height: 15px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    margin-right: 8px;
-    cursor: pointer;
+  .numbertext {
+    font-size: 10px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: 150px; 
   }
   
-  .slider #slide1:checked ~ .trigger label[for="slide1"],
-  .slider #slide2:checked ~ .trigger label[for="slide2"],
-  .slider #slide3:checked ~ .trigger label[for="slide3"],
-  .slider #slide4:checked ~ .trigger label[for="slide4"],
-  .slider #slide5:checked ~ .trigger label[for="slide5"] {
-    background: #fff;
+  .mySlides img {
+    height: 150px;
   }
   
-  .slider #slide2:checked ~ .gallery { transform: translateX(-20%); }
-  .slider #slide3:checked ~ .gallery { transform: translateX(-40%); }
-  .slider #slide4:checked ~ .gallery { transform: translateX(-60%); }
-  .slider #slide5:checked ~ .gallery { transform: translateX(-80%); }
-  
-  .slider label:last-child { margin: 0; }
-  
-  .slider .arrows {
-    position: absolute;
-    color: #fff;
-    z-index: 1;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+  .prev, .next {
+    padding: 8px; 
+    font-size: 14px; 
   }
   
-  .slider .arrows i {
-    cursor: pointer;
-    text-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+  .text {
+    font-size: 10px; 
   }
   
-  .slider .arrows i.fa-angle-right:hover {
-    -webkit-animation: click-right 0.7s linear;
-            animation: click-right 0.7s linear;
+  .numbertext {
+    font-size: 8px; 
   }
-  
-  .slider .arrows i.fa-angle-left:hover {
-    -webkit-animation: click-left 0.7s linear;
-            animation: click-left 0.7s linear;
-  }
-  
-  .slider .gallery {
-    width: 500%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    transition: all .5s ease-in-out;
-  }
-  
-  .slider figure {
-    width: 20%;
-    height: 100%;
-    float: left;
-    position: relative;
-  }
-  
-  .slider figure figcaption {
-    position: absolute;
-    top: 0;
-    color: #fff;
-    width: 100%;
-    padding: 15px;
-    text-align: justify;
-    background: rgba(0, 0, 0, 0.6);
-    font-family: "Roboto", sans-serif;
-    font-size: 0.85em;
-    z-index: 1;
-  }
-  
-  .slider figure img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  @media only screen and (min-width: 860px) {
-    .slider {width: 70%; padding-top: 46%; margin: 0 auto;}
-    .slider figure img { width: 100%; }
-  }
-  
-  @-webkit-keyframes click-right {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(13px); }
-    50% { transform: translateX(0px); }
-    75% { transform: translateX(13px); }
-    100% { transform: translateX(0px); }
-  }
-  
-  @keyframes click-right {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(13px); }
-    50% { transform: translateX(0px); }
-    75% { transform: translateX(13px); }
-    100% { transform: translateX(0px); }
-  }
-  
-  @-webkit-keyframes click-left {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(-13px); }
-    50% { transform: translateX(0px); }
-    75% { transform: translateX(-13px); }
-    100% { transform: translateX(0px); }
-  }
-  
-  @keyframes click-left {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(-13px); }
-    50% { transform: translateX(0px); }
-    75% { transform: translateX(-13px); }
-    100% { transform: translateX(0px); }
-  }
-  
-  /* ========== OPTIONAL ========== */
-  /* .slider figure:before {
-    content: "";
-    border: 20px;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: -webkit-linear-gradient(rgba(157,80,187, 0.65), rgba(110,72,170, 0.65));
-    background-image: linear-gradient(rgba(157,80,187, 0.65), rgba(110,72,170, 0.65));
-    top: 0;
-    left: 0;
-    z-index: 1;
-  } */
+}

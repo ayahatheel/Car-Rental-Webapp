@@ -1,36 +1,56 @@
-import React from 'react';
-import './Ads.css'; // Assume you've saved the CSS in a file named Slider.css
+import React, { useState, useEffect } from 'react';
+import './Ads.css';
+import ava from '../Widgets/Images/ava-1.jpg';
+import ava2 from '../Widgets/Images/ava-2.jpg';
+import faqbg from '../Widgets/Images/faqbg.png';
 
 const Ads = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const slides = [
+    { src: ava, caption: 'Caption Text' },
+    { src: ava2, caption: 'Caption Two' },
+    { src: faqbg, caption: 'Caption Three' },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const showSlide = (index) => {
+    setSlideIndex(index);
+  };
+
+  const changeSlide = (n) => {
+    setSlideIndex((prevIndex) => (prevIndex + n + slides.length) % slides.length);
+  };
+
   return (
-    <div className="slider">
-      <input type="radio" name="slide" id="slide1" defaultChecked />
-      <input type="radio" name="slide" id="slide2" />
-      <input type="radio" name="slide" id="slide3" />
-      <input type="radio" name="slide" id="slide4" />
-      <input type="radio" name="slide" id="slide5" />
-      <div className="gallery">
-        <figure>
-          <img src="http://res.cloudinary.com/dq5anctrd/image/upload/v1499302166/subway-1681222_1280_l5vuuz.jpg" alt="Slide 1" />
-          <figcaption>
-            Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment.
-          </figcaption>
-          <div className="arrows">
-            <label htmlFor="slide5"><i className="fa fa-angle-left fa-5x"></i></label>
-            <label htmlFor="slide2"><i className="fa fa-angle-right fa-5x"></i></label>
-          </div>
-        </figure>
-        {/* Add other figure elements here */}
-      </div>
-      <div className="trigger">
-        <label htmlFor="slide1"></label>
-        <label htmlFor="slide2"></label>
-        <label htmlFor="slide3"></label>
-        <label htmlFor="slide4"></label>
-        <label htmlFor="slide5"></label>
+    <div className="slideshow-container">
+      {slides.map((slide, index) => (
+        <div key={index} className={`mySlides fade ${index === slideIndex ? 'active' : ''}`}>
+          <img src={slide.src} alt={`Slide ${index + 1}`} style={{ width: '100%' }} />
+        </div>
+      ))}
+
+      <a className="prev" onClick={() => changeSlide(-1)}>&#10094;</a>
+      <a className="next" onClick={() => changeSlide(1)}>&#10095;</a>
+
+      <div style={{ textAlign: 'center' }}>
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === slideIndex ? 'active' : ''}`}
+            onClick={() => showSlide(index)}
+          ></span>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default Ads;
