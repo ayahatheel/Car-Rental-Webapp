@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { Close } from '@mui/icons-material'; 
 import "../Widgets/AdvertisementModal.css";
+import carad from '../Widgets/Images/l.jpeg';
+
 
 const AdvertisementModal = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,14 +20,11 @@ const AdvertisementModal = () => {
       className="AdvertisementModal"
     >
       <div>
-        <div className="modal-header">
-          <h2>Special Offer!</h2>
-          <button className="close-button" onClick={closeModal}>
-            <Close /> 
-          </button>
-        </div>
-        <p>Don't miss out on our amazing deals!</p>
-      </div>
+      <button className="close-button" onClick={closeModal}>
+        <Close />
+      </button>
+      <img className="centered-image" src={carad} alt="Car Advertisement" />
+    </div>
     </Modal>
   );
 };
