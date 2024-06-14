@@ -4,7 +4,6 @@ import { Close } from '@mui/icons-material';
 import "../Widgets/AdvertisementModal.css";
 import carad from '../Widgets/Images/l.jpeg';
 
-
 const AdvertisementModal = () => {
   const [isOpen, setIsOpen] = useState(true);
 

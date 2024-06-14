@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './Ads.css';
-import ava from '../Widgets/Images/ava-1.jpg';
-import ava2 from '../Widgets/Images/ava-2.jpg';
-import faqbg from '../Widgets/Images/faqbg.png';
+import ad1 from '../Widgets/Images/1.png';
+import ad2 from '../Widgets/Images/2.png';
+import ad3 from '../Widgets/Images/3.png';
 
 const Ads = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const slides = [
-    { src: ava, caption: 'Caption Text' },
-    { src: ava2, caption: 'Caption Two' },
-    { src: faqbg, caption: 'Caption Three' },
+    { src: ad1, caption: 'Caption Text' },
+    { src: ad2, caption: 'Caption Two' },
+    { src: ad3, caption: 'Caption Three' },
   ];
 
   useEffect(() => {
