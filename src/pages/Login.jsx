@@ -42,14 +42,11 @@ const Login = () => {
   };
 
   if (userLoggedIn) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/home" />;
   }
 
   return (
-    <div
-      className="login-container"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
+    <div className="login-container" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="login-form">
         <h2>تسجيل الدخول</h2>
         <p>مرحبا بك مجددا</p>
@@ -60,18 +57,24 @@ const Login = () => {
             placeholder="البريد الإلكتروني"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="كلمة المرور"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className="button-container">
-            <button type="submit" disabled={isSigningIn}>→ تسجيل الدخول</button>
+            <button type="submit" disabled={isSigningIn}>
+              → تسجيل الدخول
+            </button>
           </div>
         </form>
-        <button onClick={handleGoogleSignIn} disabled={isSigningIn}>تسجيل الدخول باستخدام Google</button>
+        <button onClick={handleGoogleSignIn} disabled={isSigningIn}>
+          تسجيل الدخول باستخدام Google
+        </button>
         <p className="signup-link">
           ليس لديك حساب؟ <Link to="/signup">أنشئ حساباً</Link>
         </p>

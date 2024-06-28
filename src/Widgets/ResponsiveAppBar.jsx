@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/authContext'; // Import useAuth hook from your context
 
 const pages = [
   { name: 'الرئيسية', link: '/' },
@@ -20,6 +21,7 @@ const pages = [
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { userLoggedIn, doSignOut } = useAuth(); // Get userLoggedIn state and doSignOut function from context
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -111,12 +113,20 @@ function ResponsiveAppBar() {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Button component={Link} to="/login" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
-                تسجيل الدخول
-              </Button>
-              <Button component={Link} to="/signup" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
-                تسجيل مستخدم جديد
-              </Button>
+              {userLoggedIn ? (
+                <Button onClick={doSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
+                  تسجيل الخروج
+                </Button>
+              ) : (
+                <>
+                  <Button component={Link} to="/login" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
+                    تسجيل الدخول
+                  </Button>
+                  <Button component={Link} to="/signup" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
+                    تسجيل مستخدم جديد
+                  </Button>
+                </>
+              )}
             </Box>
           </Toolbar>
         </Container>
