@@ -28,7 +28,7 @@
   object-fit: cover; 
 }
 
-.prev, .next {
+.prevv, .nextt {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -44,17 +44,17 @@
   background-color: transparent; 
 }
 
-.prev {
+.prevv {
   left: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.next {
+.nextt {
   right: 0;
   border-radius: 0 3px 3px 0;
 }
 
-.prev:hover, .next:hover {
+.prevv:hover, .nextt:hover {
   color: white; 
   
 }
@@ -97,7 +97,7 @@
     height: 200px; 
   }
   
-  .prev, .next {
+  .prevv, .nextt {
     padding: 10px; 
     font-size: 16px; 
   }
@@ -120,7 +120,7 @@
     height: 150px;
   }
   
-  .prev, .next {
+  .prevv, .nextt {
     padding: 8px; 
     font-size: 14px; 
   }

@@ -1,4 +1,14 @@
 .faq-box-container {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .faq-box-container.visible {
+    opacity: 1;
+  }
+  
+
+.faq-box-container {
     margin-bottom: 80px;
     background-color: transparent;
     direction: rtl;

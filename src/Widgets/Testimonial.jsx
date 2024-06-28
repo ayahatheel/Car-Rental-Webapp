@@ -1,116 +1,54 @@
-import React from "react";
-import Slider from "react-slick";
-import './Testimonial.css'; 
+import React from 'react';
+import { Box, Typography, Avatar, Grid } from '@mui/material';
+import { useInView } from 'react-intersection-observer';
+import './Testimonial.css';
 
-import ava01 from "../Widgets/Images/ava-1.jpg"
-import ava02 from "../Widgets/Images/ava-2.jpg"
-import ava03 from "../Widgets/Images/ava-3.jpg"
-import ava04 from "../Widgets/Images/ava-4.jpg"
+const testimonials = [
+  {
+    name: "جون دو",
+    title: "مدير منتج",
+    testimonial: "أنا سعيد جدًا لأنني عملت مع مايكل لتنمية أعمالي. إنه مبدع ومبتكر ولديه أفكار رائعة. أتطلع للعمل معه أكثر.",
+    img: "/path-to-avatar.jpg" // Replace with actual image path
+  },
+  {
+    name: "جين دو",
+    title: "أخصائي تسويق",
+    testimonial: "كان العمل مع مايكل تجربة رائعة. ساعدتنا أفكاره المبتكرة وتنفيذها على نجاح حملتنا بشكل فاق التوقعات.",
+    img: "/path-to-avatar.jpg" // Replace with actual image path
+  },
+  {
+    name: "بوب سميث",
+    title: "مطور",
+    testimonial: "كانت خبرة مايكل وإبداعه محوريين في نجاح مشروعنا. أوصي به بشدة.",
+    img: "/path-to-avatar.jpg" // Replace with actual image path
+  },
+];
 
 const Testimonial = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    speed: 1000,
-    swipeToSlide: true,
-    autoplaySpeed: 2000,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
-    <Slider {...settings}>
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava01} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava02} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava03} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava04} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-    </Slider>
+    <Box className="testimonial-section">
+      <Typography variant="h4" align="center" className="testimonial-title">
+        اسمع من عملاء سعداء
+      </Typography>
+      <Grid container justifyContent="center">
+        {testimonials.map((testimonial, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Box className="testimonial-card" ref={ref}>
+              <Typography variant="body1" className="testimonial-text">
+                "{testimonial.testimonial}"
+              </Typography>
+              <Avatar src={testimonial.img} className="testimonial-avatar" />
+              <Typography variant="h6" className="testimonial-name">{testimonial.name}</Typography>
+              <Typography variant="subtitle1" className="testimonial-title-text">
+                {testimonial.title}
+              </Typography>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 

@@ -1,10 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FAQ.css";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+
+  // Scroll-based fade-in effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight; // Declare windowHeight here
+      const containerElement = document.querySelector('.faq-box-container');
+      const questionElements = document.querySelectorAll('.faq-box');
+
+      if (containerElement) {
+        const containerTop = containerElement.getBoundingClientRect().top;
+        if (containerTop < windowHeight * 0.75) { // Adjust threshold as needed
+          containerElement.classList.add('visible');
+        }
+      }
+
+      questionElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight * 0.75) { // Adjust threshold as needed
+          element.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleToggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -39,13 +67,13 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="faq-box-container">
+    <div className="faq-box-container fade-in">
       <h5 className="HFAQ">الأسئلة الشائعة</h5>
       <p className="PFAQ">
         احصل على كل المعلومات التي تحتاجها لخدمات تأجير السيارات لدينا أدناه.
       </p>
       {faqItems.map((item, index) => (
-        <div className="faq-box" key={index}>
+        <div className="faq-box fade-in" key={index}>
           <div
             className={`faq-box-question ${
               activeIndex === index ? "active" : ""
@@ -63,7 +91,7 @@ const FAQ = () => {
           </div>
         </div>
       ))}
-      <div className="faq-box-footer">
+      <div className="faq-box-footer fade-in">
         <p>سؤالك ليس هنا؟</p>
         <Link component={Link} to="/Contactus">
           <Button

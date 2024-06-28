@@ -5,13 +5,13 @@ const Feedback = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const feedbacks = [
     {
-      name: "جين دو",
+      name: "محمد علي اثيل",
       location: "بغداد",
       rating: 5,
       comment: "استئجار نيسان جوك كان تغييرًا كبيرًا في مغامرتنا الخارجية. مساحة واسعة للأمتعة ومريحة للغاية للرحلات الطويلة!"
     },
     {
-      name: "جين دو",
+      name: "سادن محمد",
       location: "بغداد",
       rating: 5,
       comment: "استئجار نيسان جوك كان تجربة رائعة! ميزات السيارة الحديثة، المقاعد المريحة، والأداء السلس جعلت كل رحلة ممتعة."
@@ -54,7 +54,7 @@ const Feedback = () => {
       <div className={`feedback-content ${isFormVisible ? 'visible' : 'hidden'}`}>
         <div className="feedback-form">
           <h2>اكتب ملاحظاتك</h2>
-          <div style={{ display: "flex", alignItems: "right" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "right" }}>
             <input type="text" placeholder="أدخل اسمك الكامل" className="feedback-input" style={{ flex: "1", marginRight: "20px" }} />
             <div className="rating-section">
               <span>قيم السيارة</span>
@@ -66,8 +66,11 @@ const Feedback = () => {
             </div>
           </div>
           <textarea placeholder="اكتب ملاحظاتك هنا" className="feedback-textarea"></textarea>
-          <button className="submit-feedback-button">اترك ملاحظة</button>
-          <button className="go-back-button" onClick={handleGoBackClick}>رجوع</button>
+          <div style={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
+            <button className="submit-feedback-button">اترك ملاحظة</button>
+            <button className="go-back-button" onClick={handleGoBackClick}>رجوع</button>
+
+          </div>
         </div>
       </div>
     </div>

@@ -1,135 +1,131 @@
 .container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-    direction: rtl;
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  justify-content: space-around;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  direction: rtl;
+}
+
+.car-info, .rental-form {
+  margin-top: 50px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  margin: 10px; /* Add margin between items */
+}
+
+.car-info h1 {
+  color: red;
+}
+
+.rental-details {
+  margin-top: 20px;
+}
+
+.days-selector {
+  display: flex;
+  align-items: center;
+}
+
+.days-selector button {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.days-selector span {
+  margin: 0 10px;
+  font-size: 1.2em;
+}
+
+.rent-button, .submit-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.rental-form h2 {
+  margin-bottom: 20px;
+}
+
+.raidosection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.raidosection input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.raidosection input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.raidosection label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rental-form input[type="submit"], .rental-form input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: calc(100% - 22px); /* Adjusts input width to fit inside .rental-form */
+}
+
+.submit-button.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.transition {
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.transition.show {
+  max-height: 500px;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stacks items vertically on smaller screens */
   }
-  
+
   .car-info, .rental-form {
-    margin-top: 50px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 45%;
+    width: 100%; /* Makes items full width on smaller screens */
   }
-  
-  .car-info h1 {
-    color: red;
-  }
-  
-  .rental-details {
-    margin-top: 20px;
-  }
-  
-  .days-selector {
-    display: flex;
-    align-items: center;
-  }
-  
-  .days-selector button {
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .days-selector span {
-    margin: 0 10px;
-    font-size: 1.2em;
-  }
-  
-  .rent-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .rental-form h2 {
-    margin-bottom: 20px;
-  }
-  
-  .raidosection {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .raidosection input[type="radio"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .raidosection input[type="radio"]:checked::before {
-    content: '';
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: red;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .raidosection label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .rental-form input[type="submit"] {
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .rental-form input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .submit-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .submit-button.disabled {
-    background-color: gray;
-    cursor: not-allowed;
-  }
-  
-  .transition {
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-  }
-  
-  .transition.show {
-    max-height: 500px;
-    opacity: 1;
-  }
-  
+}

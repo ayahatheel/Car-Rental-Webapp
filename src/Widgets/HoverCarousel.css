@@ -1,6 +1,7 @@
 .gallery
 {
-    margin-top: 40px;
+  width: 85%;
+  margin: 40px auto;
 }
 
 .gallery-cell {
