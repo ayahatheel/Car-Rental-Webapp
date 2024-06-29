@@ -12,7 +12,7 @@ import AdvertisementModal from "../Widgets/AdvertisementModal";
 import { useAuth } from "../contexts/authContext";
 
 function Homepage() {
-  const { userLoggedIn, doSignOut } = useAuth();
+  // const { userLoggedIn, doSignOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {

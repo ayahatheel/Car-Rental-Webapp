@@ -1,6 +1,5 @@
 import React from 'react'
 import Ads from '../Widgets/Ads'
-import FAQ from '../Widgets/FAQ'
 import CarCard from "../Widgets/CarCard";
 import { Link } from "react-router-dom"; 
 import { Typography } from '@mui/material';
