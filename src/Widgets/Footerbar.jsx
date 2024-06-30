@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 // import InstagramIcon from '@mui/icons-material/Instagram';
 // import TwitterIcon from '@mui/icons-material/Twitter';
 // import FacebookIcon from '@mui/icons-material/Facebook';

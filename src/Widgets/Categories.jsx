@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup, useTheme } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
 
 const categories = [

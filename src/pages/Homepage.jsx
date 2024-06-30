@@ -9,7 +9,7 @@ import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
 import { Typography } from '@mui/material';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
-import { useAuth } from "../contexts/authContext";
+// import { useAuth } from "../contexts/authContext";
 
 function Homepage() {
   // const { userLoggedIn, doSignOut } = useAuth();

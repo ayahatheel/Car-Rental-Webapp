@@ -37,8 +37,8 @@ const Ads = () => {
         </div>
       ))}
 
-      <a className="prevv" onClick={() => changeSlide(-1)}>&#10094;</a>
-      <a className="nextt" onClick={() => changeSlide(1)}>&#10095;</a>
+      <a href="#" className="prevv" onClick={() => changeSlide(-1)}>&#10094;</a>
+      <a href="#" className="nextt" onClick={() => changeSlide(1)}>&#10095;</a>
 
       <div style={{ textAlign: 'center' }}>
         {slides.map((_, index) => (
