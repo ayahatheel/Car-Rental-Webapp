@@ -25,7 +25,7 @@ const testimonials = [
 ];
 
 const Testimonial = () => {
-  const { ref, inView } = useInView({ triggerOnce: true });
+  const { ref } = useInView({ triggerOnce: true });
 
   return (
     <Box className="testimonial-section">
