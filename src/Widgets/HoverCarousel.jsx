@@ -18,13 +18,13 @@ const HoverCarousel = () => {
     <>
       <div className="gallery js-flickity">
         <div className="gallery-cell">
-          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" />
+          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" alt="Future cars 2023-2026" />
         </div>
         <div className="gallery-cell">
-          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" />
+          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" alt="Future cars 2023-2026" />
         </div>
         <div className="gallery-cell">
-          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" />
+          <img src="https://cdn.motor1.com/images/mgl/ZnmO23/s1/future-cars-2023-2026.webp" alt="Future cars 2023-2026" />
         </div>
       </div>
     </>
