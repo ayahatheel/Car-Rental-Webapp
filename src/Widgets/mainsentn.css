@@ -1,78 +1,75 @@
 .sentnce {
-    text-align: center;
-    background-image: url('./Images/carbg.png'); 
-    background-size: cover;    
-     color: black;
-    font-weight: 300;
-    font-size: 32px;
-    height: 450px;
-    padding-top: 10vh;
-    overflow: hidden;
-    direction: rtl;
-  }
-
-  mark {
-    background-color: transparent; 
-    margin-left: 10px;
-    
+  text-align: center;
+  background-image: url('./Images/carbg.png'); 
+  background-size: cover;    
+  color: black;
+  font-weight: 300;
+  font-size: 32px;
+  height: 450px;
+  padding-top: 10vh;
+  overflow: hidden;
+  direction: rtl;
 }
-  
-  .first-div {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: showup 7s infinite;
-  }
-  
-  .second-div {
-    width: 0px;
-    display: inline-block;
-    vertical-align: top; 
-    overflow: hidden;
-    white-space: nowrap;
-    animation: reveal 7s infinite;
-  }
-  
-  .second-div span {
-    margin-left: -355px;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: slidein 7s infinite;
-  }
-  
-  @keyframes showup {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  
-  @keyframes slidein {
-    0% { margin-left: -800px;}
-    20% { margin-left: -800px; }
-    35% { margin-left: 0px; }
-    100% { margin-left: 0px; }
-  }
-  
-  @keyframes reveal {
-    0% { opacity: 0; width: 0px; }
-    20% { opacity: 1; width: 0px; }
-    30% { width: 655px; }
-    80% { opacity: 1; }
-    100% { opacity: 0; width: 705px; }
-  }
-  
-  
+
+mark {
+  background-color: transparent; 
+  margin-left: 10px;
+}
+
+.first-div {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: showup 7s infinite;
+}
+
+.second-div {
+  width: 0px;
+  display: inline-block;
+  vertical-align: top; 
+  overflow: hidden;
+  white-space: nowrap;
+  animation: reveal 7s infinite;
+}
+
+.second-div span {
+  margin-left: -355px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: slidein 7s infinite;
+}
+
+@keyframes showup {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes slidein {
+  0% { margin-left: -800px;}
+  20% { margin-left: -800px; }
+  35% { margin-left: 0px; }
+  100% { margin-left: 0px; }
+}
+
+@keyframes reveal {
+  0% { opacity: 0; width: 0px; }
+  20% { opacity: 1; width: 0px; }
+  30% { width: 655px; }
+  80% { opacity: 1; }
+  100% { opacity: 0; width: 705px; }
+}
 
 @media (max-width: 480px) {
   .sentnce {
     text-align: start;
-      font-size: 18px;
-      height: 100px;
-      background-image: url('./Images/mobilebg.png'); 
-      background-color: #E2E4E9;
-      padding-top: 2vh;
+    font-size: 18px;
+    height: 100px;
+    background-image: url('./Images/mobilebg.png'); 
+    background-color: #E2E4E9;
+    padding-top: 2vh;
   }
 
   .first-div {
@@ -81,21 +78,56 @@
   }
 
   .second-div span {
-      margin-left: -150px;
+    margin-left: -150px;
   }
 
   @keyframes slidein {
-      0% { margin-left: -300px;}
-      20% { margin-left: -300px; }
-      35% { margin-left: 0px; }
-      100% { margin-left: 0px; }
+    0% { margin-left: -300px;}
+    20% { margin-left: -300px; }
+    35% { margin-left: 0px; }
+    100% { margin-left: 0px; }
   }
 
   @keyframes reveal {
-      0% { opacity: 0; width: 0px; }
-      20% { opacity: 1; width: 0px; }
-      30% { width: 100px; }
-      80% { opacity: 1; }
-      100% { opacity: 0; width: 200px; }
+    0% { opacity: 0; width: 0px; }
+    20% { opacity: 1; width: 0px; }
+    30% { width: 100px; }
+    80% { opacity: 1; }
+    100% { opacity: 0; width: 200px; }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .sentnce {
+    text-align: center;
+    font-size: 24px;
+    height: 200px;
+    background-image: url('./Images/mobilebg.png'); 
+    background-color: #E2E4E9;
+    padding-top: 5vh;
+  }
+
+  .first-div {
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+
+  .second-div span {
+    margin-left: -200px;
+  }
+
+  @keyframes slidein {
+    0% { margin-left: -500px;}
+    20% { margin-left: -500px; }
+    35% { margin-left: 0px; }
+    100% { margin-left: 0px; }
+  }
+
+  @keyframes reveal {
+    0% { opacity: 0; width: 0px; }
+    20% { opacity: 1; width: 0px; }
+    30% { width: 150px; }
+    80% { opacity: 1; }
+    100% { opacity: 0; width: 260px; }
   }
 }
