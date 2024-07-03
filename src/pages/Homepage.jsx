@@ -7,7 +7,7 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material'; // Import useMediaQuery
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 // import { useAuth } from "../contexts/authContext";
 
@@ -32,6 +32,9 @@ function Homepage() {
     };
   }, []);
 
+  // Check for large screens (desktop)
+  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('lg'));
+
   return (
     <>
       <AdvertisementModal />
@@ -52,20 +55,22 @@ function Homepage() {
         </>
       )} */}
 
-      <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
-        اختر حسب الفئة
-      </Typography>
+      {isDesktop && ( // Render Typography only on large screens
+        <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
+          اختر حسب الفئة
+        </Typography>
+      )}
 
       <Categories />
 
-      <div className="fade-in">
+      {isDesktop && <div className="fade-in">
         <Typography variant="h5" sx={{ margin: '10px 100px 0 0', padding: 0, textAlign: 'right' }}>
           استكشف اختياراتك
         </Typography>
         <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right' }}>
           واختر سيارتك المثالية لمغامرتك القادمة
         </Typography>
-      </div>
+      </div>}
 
       <div className="card-grid">
         {[...Array(8)].map((_, index) => (
