@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext'; // Import useAuth hook from your context
 
 const pages = [
@@ -89,7 +89,14 @@ function ResponsiveAppBar() {
                       component={Link}
                       to={page.link}
                       textAlign="left"
-                      sx={{ color: 'black', textDecoration: 'none', fontFamily: 'Tajawal, sans-serif' }}
+                      sx={{
+                        color: 'black',
+                        textDecoration: 'none',
+                        fontFamily: 'Tajawal, sans-serif',
+                        '&:hover': {
+                          color: '#E90224', // Adjust hover text color
+                        },
+                      }}
                     >
                       {page.name}
                     </Typography>
@@ -105,7 +112,15 @@ function ResponsiveAppBar() {
                   component={Link}
                   to={page.link}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'black', display: 'block', fontFamily: 'Tajawal, sans-serif' }}
+                  sx={{
+                    my: 2,
+                    color: 'black',
+                    display: 'block',
+                    fontFamily: 'Tajawal, sans-serif',
+                    '&:hover': {
+                      color: '#E90224', // Adjust hover text color
+                    },
+                  }}
                 >
                   {page.name}
                 </Button>
@@ -122,8 +137,21 @@ function ResponsiveAppBar() {
                   <Button component={Link} to="/login" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
                     تسجيل الدخول
                   </Button>
-                  <Button component={Link} to="/signup" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
-                    تسجيل مستخدم جديد
+                  <Button
+                    component={Link}
+                    to="/signup"
+                    sx={{
+                      color: 'white',
+                      width: '140px',
+                      backgroundColor: '#E90224',
+                      borderRadius: '10px',
+                      fontFamily: 'Tajawal, sans-serif',
+                      '&:hover': {
+                        backgroundColor: '#ff0033', 
+                      },
+                    }}
+                  >
+                   مستخدم جديد؟
                   </Button>
                 </>
               )}
