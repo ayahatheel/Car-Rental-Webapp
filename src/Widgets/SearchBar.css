@@ -32,9 +32,11 @@ input:focus {
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
   .input-wrapper {
-    width: 70%;
-    height: 2.25rem;
+    width: 80%;
+    height: 3.25rem;
+
     padding: 0 10px;
+    margin-left: auto; /* Align to the right */
   }
 
   input {
@@ -45,9 +47,10 @@ input:focus {
 
 @media (max-width: 480px) {
   .input-wrapper {
-    width: 70%;
-    height: 2rem;
+    width: 82%;
+    height: 2.5rem;
     padding: 0 5px;
+    margin-left: auto; /* Align to the right */
   }
 
   input {

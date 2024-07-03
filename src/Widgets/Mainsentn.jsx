@@ -24,7 +24,7 @@ function Mainsentn() {
             <div className='first-div' style={{ fontWeight: 'bold', color: 'red' }}>استأجر</div>
             <div className='second-div'>
                 <span>
-                    {isMobile ? 'سيارتك المفضلة' : 'سيارتك المفضلة وانطلق في '}
+                    {isMobile ? ' سيارتك المفضلة وانطلق' : 'سيارتك المفضلة وانطلق في '}
                     {!isMobile && <strong style={{ fontWeight: 'bold', color: 'red' }}> الطريق </strong>}
                     {!isMobile && 'بخطوات '}
                     {!isMobile && <strong style={{ fontWeight: 'bold', color: 'red' }}>سهلة</strong>}
