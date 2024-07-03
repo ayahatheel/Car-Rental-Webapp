@@ -33,7 +33,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
     borderRadius: '15px',
   },
   '@media (max-width: 768px)': {
-    flexBasis: '50%',
+    minWidth: '120px',
+    padding: '10px 15px',
+    fontSize: '0.8rem',
+  },
+  '@media (max-width: 480px)': {
+    minWidth: '160px',
+    padding: '10px 20px',
+    fontSize: '0.8rem',
   },
 }));
 
@@ -46,20 +53,18 @@ const Categories = () => {
   };
 
   return (
-    <div style={{ overflowX: 'auto', padding: '20px' }}>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          {categories.map(({ name }) => (
-            <StyledButton
-              key={name}
-              onClick={() => handleCategoryClick(name)}
-              className={selected === name ? 'Mui-selected' : ''}
-              theme={theme}
-            >
-              {name}
-            </StyledButton>
-          ))}
-        </div>
+    <div style={{ overflowX: 'auto', padding: '20px', whiteSpace: 'nowrap', textAlign: 'center' }}>
+      <div style={{ display: 'inline-block' }}>
+        {categories.map(({ name }) => (
+          <StyledButton
+            key={name}
+            onClick={() => handleCategoryClick(name)}
+            className={selected === name ? 'Mui-selected' : ''}
+            theme={theme}
+          >
+            {name}
+          </StyledButton>
+        ))}
       </div>
     </div>
   );
