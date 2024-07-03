@@ -91,6 +91,8 @@
 @media (max-width: 768px) {
   .slideshow-container {
     height: 200px;
+    width: 90%;
+    margin-bottom: 0px;
   }
   
   .mySlides img {

@@ -35,12 +35,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
   '@media (max-width: 768px)': {
     minWidth: '120px',
     padding: '10px 15px',
-    fontSize: '0.8rem',
+    fontSize: '0.7rem',
   },
   '@media (max-width: 480px)': {
     minWidth: '160px',
     padding: '10px 20px',
-    fontSize: '0.8rem',
+    fontSize: '0.7rem',
   },
 }));
 
