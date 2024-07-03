@@ -7,7 +7,7 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography, useMediaQuery } from '@mui/material'; // Import useMediaQuery
+import { Typography, useMediaQuery } from '@mui/material'; 
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 // import { useAuth } from "../contexts/authContext";
 
@@ -20,7 +20,7 @@ function Homepage() {
       elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        if (elementTop < windowHeight * 0.75) { // Adjust threshold as needed
+        if (elementTop < windowHeight * 0.75) { 
           element.classList.add('visible');
         }
       });
@@ -32,7 +32,7 @@ function Homepage() {
     };
   }, []);
 
-  // Check for large screens (desktop)
+  // Check if screen size is desktop (lg and up)
   const isDesktop = useMediaQuery(theme => theme.breakpoints.up('lg'));
 
   return (
@@ -63,14 +63,16 @@ function Homepage() {
 
       <Categories />
 
-      {isDesktop && <div className="fade-in">
-        <Typography variant="h5" sx={{ margin: '10px 100px 0 0', padding: 0, textAlign: 'right' }}>
-          استكشف اختياراتك
-        </Typography>
-        <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right' }}>
-          واختر سيارتك المثالية لمغامرتك القادمة
-        </Typography>
-      </div>}
+      {isDesktop && (
+        <div className="fade-in">
+          <Typography variant="h5" sx={{ margin: '10px 100px 0 0', padding: 0, textAlign: 'right' }}>
+            استكشف اختياراتك
+          </Typography>
+          <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right' }}>
+            واختر سيارتك المثالية لمغامرتك القادمة
+          </Typography>
+        </div>
+      )}
 
       <div className="card-grid">
         {[...Array(8)].map((_, index) => (
@@ -78,7 +80,7 @@ function Homepage() {
             key={index}
             to="/Carderails"
             style={{ textDecoration: "none", color: "inherit" }}
-            className="card-grid-item fade-in"
+            className={isDesktop ? "card-grid-item fade-in" : "card-grid-item"} // Apply fade-in only on desktop
           >
             <CarCard />
           </Link>
