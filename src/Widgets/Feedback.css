@@ -178,3 +178,63 @@ font-size: 1em;
     z-index: 1;
   }
   
+
+  .feedback-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it overlays other content */
+  }
+  
+  .feedback-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .star {
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 24px; /* Adjust size as needed */
+  }
+  
+  .filled {
+    color: gold;
+  }
+  
+  .unfilled {
+    color: gray;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .feedback-input, .feedback-textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .feedback-input {
+    height: 40px;
+  }
+  
+  .feedback-textarea {
+    height: 100px;
+  }
+  
