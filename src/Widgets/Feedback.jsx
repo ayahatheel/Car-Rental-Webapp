@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './Feedback.css';
-import { useAuth } from '../contexts/authContext'; // Adjust the import path as necessary
+import { useAuth } from '../contexts/authContext'; 
+import { Rating } from '@mui/material';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Feedback = () => {
-  const { currentUser } = useAuth(); // Accessing currentUser from AuthContext
+  const { currentUser } = useAuth(); 
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
   const [feedbacks, setFeedbacks] = useState([
     {
       id: 1,
@@ -39,7 +40,6 @@ const Feedback = () => {
       const feedback = { ...newFeedback, id: feedbacks.length + 1 };
       setFeedbacks([...feedbacks, feedback]);
       setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
-      setRating(0);
       setIsFormVisible(false);
     } else {
       alert("Please fill in all fields.");
@@ -66,20 +66,17 @@ const Feedback = () => {
             <div key={feedback.id} className="feedback-card">
               <div className="feedback-header">
                 <span className="feedback-name">{feedback.email} - {feedback.location}</span>
-                <div className="feedback-rating">
-                  {Array.from({ length: feedback.rating }).map((_, i) => (
-                    <span key={i} className="star">⭐</span>
-                  ))}
-                </div>
+                <Rating value={feedback.rating} readOnly />
                 {currentUser && feedback.email === currentUser.email && (
-                  <button className="delete-feedback-button" onClick={() => handleDeleteFeedback(feedback.id)}>حذف</button>
+                  <IconButton onClick={() => handleDeleteFeedback(feedback.id)}>
+                    <DeleteIcon color="secondary" />
+                  </IconButton>
                 )}
               </div>
               <p>{feedback.comment}</p>
             </div>
           ))}
         </div>
-        <button className="show-all-feedbacks-button">عرض كل الملاحظات</button>
       </div>
 
       {isFormVisible && (
@@ -104,20 +101,13 @@ const Feedback = () => {
             />
             <div className="rating-section">
               <span>قيم السيارة</span>
-              <div className="feedback-rating">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`star ${i < (hover || rating) ? 'filled' : 'unfilled'}`}
-                    onClick={() => {
-                      setRating(i + 1);
-                      setNewFeedback({ ...newFeedback, rating: i + 1 });
-                    }}
-                    onMouseEnter={() => setHover(i + 1)}
-                    onMouseLeave={() => setHover(rating)}
-                  >☆</span>
-                ))}
-              </div>
+              <Rating
+                name="rating"
+                value={newFeedback.rating}
+                onChange={(event, newValue) => {
+                  setNewFeedback({ ...newFeedback, rating: newValue });
+                }}
+              />
             </div>
             <textarea 
               name="comment"
