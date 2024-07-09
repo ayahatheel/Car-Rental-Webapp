@@ -1,43 +1,62 @@
+// AuthProvider/index.jsx
 import React, { useEffect, useState, useContext } from 'react';
-import { auth } from '../../firebase/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { doSignOut } from '../../firebase/auth'; // Import the sign-out function
+import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword } from '../../xanoAuth';
 
-// Create a context
 const AuthContext = React.createContext();
 
-// Create a custom hook to use the AuthContext
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-// Create a provider component
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, initializerUser);
-    return unsubscribe;
+    const initializeUser = async () => {
+      try {
+        const user = await getCurrentUser();
+        setCurrentUser(user);
+        setUserLoggedIn(true);
+      } catch (error) {
+        setCurrentUser(null);
+        setUserLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeUser();
   }, []);
 
-  async function initializerUser(user) {
-    if (user) {
-      setCurrentUser({ ...user });
+  const signUp = async (email, password) => {
+    try {
+      const user = await doCreateUserWithEmailAndPassword(email, password);
+      setCurrentUser(user);
       setUserLoggedIn(true);
-    } else {
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await doSignOut();
       setCurrentUser(null);
       setUserLoggedIn(false);
+    } catch (error) {
+      console.error("Sign out error:", error);
     }
-    setLoading(false);
-  }
+  };
 
   const value = {
     currentUser,
     userLoggedIn,
+    setUserLoggedIn,
     loading,
-    doSignOut, // Add the sign-out function to the context
+    signUp,
+    signOut,
   };
 
   return (

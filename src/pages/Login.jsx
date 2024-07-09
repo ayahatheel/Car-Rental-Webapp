@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
-import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../firebase/auth';
+import { doSignInWithEmailAndPassword } from '../xanoAuth';
 import { useAuth } from '../contexts/authContext';
 import bgImage from "../Widgets/Images/formbg.png";
 import "../Widgets/login.css";
 
 const Login = () => {
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, setUserLoggedIn } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,24 +18,12 @@ const Login = () => {
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        await doSignInWithEmailAndPassword(email, password);
-        // Redirect or update UI after successful login
+        const user = await doSignInWithEmailAndPassword(email, password);
+        console.log("Login successful:", user); // Debugging: Log successful login
+        setUserLoggedIn(true);
       } catch (error) {
-        setErrorMessage(error.message);
-        setIsSigningIn(false);
-      }
-    }
-  };
-
-  const handleGoogleSignIn = async (e) => {
-    e.preventDefault();
-    if (!isSigningIn) {
-      setIsSigningIn(true);
-      try {
-        await doSignInWithGoogle();
-        // Redirect or update UI after successful login
-      } catch (error) {
-        setErrorMessage(error.message);
+        console.error("Login error:", error); // Debugging: Log the error
+        setErrorMessage(error.message || "خطأ في تسجيل الدخول. يرجى المحاولة مرة أخرى.");
         setIsSigningIn(false);
       }
     }
@@ -72,9 +60,6 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <button onClick={handleGoogleSignIn} disabled={isSigningIn}>
-          تسجيل الدخول باستخدام Google
-        </button>
         <p className="signup-link">
           ليس لديك حساب؟ <Link to="/signup">أنشئ حساباً</Link>
         </p>

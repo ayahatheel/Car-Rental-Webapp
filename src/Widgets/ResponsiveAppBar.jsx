@@ -21,7 +21,7 @@ const pages = [
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const { userLoggedIn, doSignOut } = useAuth(); // Get userLoggedIn state and doSignOut function from context
+  const { userLoggedIn, signOut } = useAuth(); // Get userLoggedIn state and signOut function from context
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -29,6 +29,15 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      console.log("User signed out successfully"); // Debugging: Log successful sign-out
+    } catch (error) {
+      console.error("Sign out error:", error); // Debugging: Log the error
+    }
   };
 
   return (
@@ -129,7 +138,7 @@ function ResponsiveAppBar() {
 
             <Box sx={{ flexGrow: 0 }}>
               {userLoggedIn ? (
-                <Button onClick={doSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
+                <Button onClick={handleSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
                   تسجيل الخروج
                 </Button>
               ) : (
