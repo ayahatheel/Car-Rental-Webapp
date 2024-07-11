@@ -1,4 +1,3 @@
-// CarContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -12,11 +11,11 @@ export const CarProvider = ({ children }) => {
     axios.get('https://x8ki-letl-twmt.n7.xano.io/api:IzeJrQwI/carinfo')
       .then(response => {
         setCarData(response.data);
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false);
       })
       .catch(error => {
-        console.error('There was an error fetching the car data!', error);
-        setLoading(false); // Set loading to false even if there's an error
+        console.error('Error fetching car data:', error);
+        setLoading(false);
       });
   }, []);
 

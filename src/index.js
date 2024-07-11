@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/authContext';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CarProvider } from './components/CarContext'; // Import CarProvider
+import { CarProvider } from './components/CarContext';
+import App from './App';
+import Layout from './components/Layout';
+import Carderails from './pages/Carderails';
 
 // Define your custom theme
 const theme = createTheme({
-  // Customize your theme here
   typography: {
     fontFamily: 'Arial, sans-serif',
   },
-  // Add more theme customizations as needed
 });
 
 ReactDOM.render(
@@ -22,8 +22,12 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Router>
         <AuthProvider>
-          <CarProvider> {/* Wrap App with CarProvider */}
-            <App />
+          <CarProvider>
+            <Routes>
+              <Route path="/" element={<Layout />} />
+              <Route path="/car/:id" element={<Carderails />} />
+              <Route path="*" element={<App />} />
+            </Routes>
           </CarProvider>
         </AuthProvider>
       </Router>
@@ -32,7 +36,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

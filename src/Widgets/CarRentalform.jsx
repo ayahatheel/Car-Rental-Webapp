@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import "./CarRentalform.css";
 
 function CarRentalform() {
+  const [carData, setCarData] = useState(null);
   const [days, setDays] = useState(1);
   const [deliveryOption, setDeliveryOption] = useState('');
   const [formValues, setFormValues] = useState({
@@ -14,6 +17,19 @@ function CarRentalform() {
     extra: ''
   });
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const { id } = useParams(); // Assume car ID is passed as a URL parameter
+
+  useEffect(() => {
+    // Fetch car details based on the car ID
+    axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:IzeJrQwI/carinfo/${id}`)
+      .then(response => {
+        setCarData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching car data:', error);
+      });
+  }, [id]);
 
   const decreaseDays = () => {
     if (days > 1) {
@@ -43,25 +59,29 @@ function CarRentalform() {
     setIsFormValid(isValid);
   }, [formValues, deliveryOption]);
 
+  if (!carData) return <p>Loading...</p>; // Handle loading state
+
+  const totalPrice = carData.price * days;
+
   return (
     <div className="container">
       <div className="car-info">
-        <h2>سيارات السيدان</h2>
-        <h1>نيسان جوك</h1>
-        <p><strong>سنة الصنع:</strong> 2024</p>
-        <p><strong>نوع الوقود:</strong> بنزين</p>
-        <p><strong>نوع الناقل:</strong> أوتوماتيكي</p>
-        <p><strong>سعة التواجد:</strong> 5</p>
+        <h2>{carData.catgories}</h2>
+        <h1>{carData.Car_name}</h1>
+        <p><strong>سنة الصنع:</strong> {carData.Year_of_Manufacture}</p>
+        <p><strong>نوع الوقود:</strong> {carData.car_fule}</p>
+        <p><strong>نوع الناقل:</strong> {carData.transmission}</p>
+        <p><strong>سعة التواجد:</strong> {carData.Seating_Capacity}</p>
         <h3>الميزات والمرافق:</h3>
-        <p>تكييف الهواء، نوافذ كهربائية، نظام ترفيه بشاشة تعمل باللمس، اتصال بلوتوث، كاميرا خلفية، تحكم سرعة تكيفية، تحذير من الخروج عن المسار، ونظام فرملة طوارئ تلقائي.</p>
+        <p>{carData.Features_and_Amenities}</p>
         <div className="rental-details">
-          <p><strong>عدد الأيام:</strong> <span>25000 دينار عراقي/اليوم</span></p>
+          <p><strong>عدد الأيام:</strong> <span>{carData.price} دينار عراقي/اليوم</span></p>
           <div className="days-selector">
             <button onClick={decreaseDays}>-</button>
             <span>{days}</span>
             <button onClick={increaseDays}>+</button>
           </div>
-          <button className="rent-button">استئجار السيارة - {25000 * days} دينار عراقي/ {days} يوم</button>
+          <button className="rent-button">استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</button>
         </div>
       </div>
 

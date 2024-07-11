@@ -1,6 +1,5 @@
 import React from 'react';
 import HoverCarousel from '../Widgets/HoverCarousel';
-// import { Link } from 'react-router-dom';
 import CarRentalform from '../Widgets/CarRentalform';
 import Feedback from '../Widgets/Feedback';
 
