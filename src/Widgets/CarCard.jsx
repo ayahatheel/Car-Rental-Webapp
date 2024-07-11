@@ -1,80 +1,61 @@
-
 import React from 'react';
-import './CarCard.css'; 
+import './CarCard.css';
+import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import PeopleIcon from '@mui/icons-material/People';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 
-const CarCard = () => {
-  const carData = {
-    image: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250', 
-    name: 'جاكوار XE L P250',
-    rating: 4.8,
-    reviews: 36,
-    passengers: 4,
-    type: 'سوبر',
-    price: '25000 دينار / يوم'
-  };
+const CarCard = ({ car }) => {
+  if (!car) return null; // Ensure car is defined
+
+  const { Car_name, Seating_Capacity, price, car_fule, car_image } = car;
 
   return (
-    <div className="car-card">
-      <img src={carData.image} alt={carData.name} className="car-image" />
-      <h2>{carData.name}</h2>
-      <div className="rating">
-        <span className="star">⭐</span>
-        <span>{carData.rating} ({carData.reviews} تقييمات)</span>
-      </div>
-      <div className="details">
-        <span>{carData.passengers} ركاب</span>
-        <span className="super">{carData.type}</span>
-      </div>
-      <div className="price">
-        <span>السعر</span>
-        <span>{carData.price}</span>
-      </div>
-      <button className="rent-button">استئجار الآن →</button>
-    </div>
+    <Card className="car-card">
+      <CardContent>
+        <div className="car-image-container">
+          <img src={car_image.url} alt={Car_name} className="car-image" />
+        </div>
+        <Typography variant="h6" component="div" gutterBottom className="car-name">
+          {Car_name}
+        </Typography>
+        <Box className="details" mb={1}>
+          <Box display="flex" alignItems="center">
+            <PeopleIcon style={{ opacity: 0.6 }} />
+            <Typography variant="body2" ml={0.5}>
+              {Seating_Capacity} ركاب
+            </Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <LocalGasStationIcon style={{ opacity: 0.6 }} />
+            <Typography variant="body2" ml={0.5}>
+              {car_fule}
+            </Typography>
+          </Box>
+        </Box>
+        <Box display="flex" justifyContent="space-between" mt={2} mb={2} className="price">
+          <Typography variant="body1">السعر</Typography>
+          <Typography variant="h6">{price} دينار / يوم</Typography>
+        </Box>
+        <Button
+          variant="contained"
+          sx={{
+            color: 'white',
+            width: '100%',
+            backgroundColor: '#E90224',
+            borderRadius: '10px',
+            fontFamily: 'Tajawal, sans-serif',
+            padding: '10px 0',
+            fontSize: '1em',
+            '&:hover': {
+              backgroundColor: '#ff0033',
+            },
+          }}
+        >
+          استئجار الآن →
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
 export default CarCard;
-
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import './CarCard.css'; 
-
-// const CarCard = () => {
-//   const [carData, setCarData] = useState(null);
-
-//   useEffect(() => {
-//     axios.get('YOUR_API_URL')
-//       .then(response => {
-//         setCarData(response.data);
-//       })
-//       .catch(error => {
-//         console.error('There was an error fetching the car data!', error);
-//       });
-//   }, []);
-
-//   if (!carData) return <p>Loading...</p>;
-
-//   return (
-//     <div className="car-card">
-//       <img src={carData.image} alt={carData.name} className="car-image" />
-//       <h2>{carData.name}</h2>
-//       <div className="rating">
-//         <span className="star">⭐</span>
-//         <span>{carData.rating} ({carData.reviews} reviews)</span>
-//       </div>
-//       <div className="details">
-//         <span>{carData.passengers} Passengers</span>
-//         <span className="super">{carData.type}</span>
-//       </div>
-//       <div className="price">
-//         <span>Price</span>
-//         <span>{carData.price} IQD/day</span>
-//       </div>
-//       <button className="rent-button">Rent Now →</button>
-//     </div>
-//   );
-// };
-
-// export default CarCard;

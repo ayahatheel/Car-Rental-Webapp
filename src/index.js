@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './contexts/authContext';
-import { ThemeProvider, createTheme } from '@mui/material/styles'; // Import ThemeProvider and createTheme
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CarProvider } from './components/CarContext'; // Import CarProvider
 
 // Define your custom theme
 const theme = createTheme({
@@ -21,7 +22,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Router>
         <AuthProvider>
-          <App />
+          <CarProvider> {/* Wrap App with CarProvider */}
+            <App />
+          </CarProvider>
         </AuthProvider>
       </Router>
     </ThemeProvider>

@@ -9,6 +9,13 @@ import Contactus from "../pages/Contcatus";
 // import { BrowserRouter } from 'react-router-dom';
 import Services from "../pages/Services";
 import Carlisting from "../pages/Carlisting";
+import ProfilePage from '../pages/ProfilePage';
+import { useAuth } from '../contexts/authContext';
+
+const PrivateRoute = ({ element, ...rest }) => {
+  const { userLoggedIn } = useAuth();
+  return userLoggedIn ? element : <Navigate to="/login" />;
+};
 
 const Routers = () => {
   return (
@@ -18,15 +25,14 @@ const Routers = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Singup />} />
       <Route path="/Carlisting" element={<Carlisting />} />
-      <Route path="/Carderails" element={<Carderails />} /> 
-      <Route path="/Contactus" element={<Contactus/>} />
-      <Route path="/Services" element={<Services/>} />
-
-      {/* <Route path="/carcard" element={<Homepage />} /> */}
-      {/* <Route path="/cars/:slug" element={<CarDetails />} /> */}
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="/Cardetails" element={<Carderails />} />
+      <Route path="/Contactus" element={<Contactus />} />
+      <Route path="/Services" element={<Services />} />
+      <Route path="/profile" element={<PrivateRoute element={<ProfilePage />} />} />
+      {/* Add other routes here */}
     </Routes>
   );
 };
+
 
 export default Routers;

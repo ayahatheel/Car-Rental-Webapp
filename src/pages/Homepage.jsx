@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+// HomePage.jsx
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
 import FAQ from "../../src/Widgets/FAQ";
 import CarCard from "../Widgets/CarCard";
@@ -8,11 +9,10 @@ import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
 import { Typography, useMediaQuery } from '@mui/material'; 
+import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
-// import { useAuth } from "../contexts/authContext";
 
 function Homepage() {
-  // const { userLoggedIn, doSignOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,28 +32,16 @@ function Homepage() {
     };
   }, []);
 
-  // Check if screen size is desktop (lg and up)
-  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('lg'));
+  const isDesktop = useMediaQuery('(min-width:1280px)'); // Use a media query string directly
+
+  const { carData, loading } = useContext(CarContext);
+
+  if (loading) return <p>Loading...</p>; // Handle loading state
 
   return (
     <>
       <AdvertisementModal />
       <Mainsentn />
-
-      {/* {userLoggedIn ? (
-        <button onClick={doSignOut} style={{ float: 'right', margin: '10px' }}>
-          Logout
-        </button>
-      ) : (
-        <>
-          <Link to="/login" style={{ float: 'right', margin: '10px' }}>
-            Login
-          </Link>
-          <Link to="/register" style={{ float: 'right', margin: '10px' }}>
-            Register
-          </Link>
-        </>
-      )} */}
 
       {isDesktop && ( // Render Typography only on large screens
         <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
@@ -74,18 +62,12 @@ function Homepage() {
         </div>
       )}
 
-      <div className="card-grid">
-        {[...Array(8)].map((_, index) => (
-          <Link
-            key={index}
-            to="/Carderails"
-            style={{ textDecoration: "none", color: "inherit" }}
-            className={isDesktop ? "card-grid-item fade-in" : "card-grid-item"} // Apply fade-in only on desktop
-          >
-            <CarCard />
-          </Link>
+      <div className="home-page">
+        {carData.map(car => (
+          <CarCard key={car.id} car={car} />
         ))}
       </div>
+
       <div className="button-container">
         <Link to="/Carlisting">
           <button className="load-button">المزيد من السيارات</button>
@@ -94,7 +76,7 @@ function Homepage() {
 
       <FAQ />
       <Chat />
-      <Testimonial/>
+      <Testimonial />
     </>
   );
 }

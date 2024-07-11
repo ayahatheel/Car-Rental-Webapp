@@ -138,9 +138,14 @@ function ResponsiveAppBar() {
 
             <Box sx={{ flexGrow: 0 }}>
               {userLoggedIn ? (
-                <Button onClick={handleSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
-                  تسجيل الخروج
-                </Button>
+                <>
+                  <Button component={Link} to="/profile" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
+                    الملف الشخصي
+                  </Button>
+                  <Button onClick={handleSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
+                    تسجيل الخروج
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button component={Link} to="/login" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
@@ -156,11 +161,11 @@ function ResponsiveAppBar() {
                       borderRadius: '10px',
                       fontFamily: 'Tajawal, sans-serif',
                       '&:hover': {
-                        backgroundColor: '#ff0033', 
+                        backgroundColor: '#ff0033',
                       },
                     }}
                   >
-                   مستخدم جديد؟
+                    مستخدم جديد؟
                   </Button>
                 </>
               )}
