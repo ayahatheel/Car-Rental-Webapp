@@ -1,14 +1,26 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import { Card, CardContent, Typography, Button, Box, IconButton } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import { Link } from 'react-router-dom';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link, useNavigate } from 'react-router-dom';
 import './CarCard.css';
 
-const CarCard = ({ car }) => {
-  if (!car) return null; // Ensure car is defined
+const CarCard = ({ car, onFavoriteToggle, isFavorited }) => {
+  const navigate = useNavigate();
+
+  if (!car) return null;
 
   const { id, Car_name, Seating_Capacity, price, car_fule, car_image, car_image2 } = car;
+
+  const handleFavoriteClick = (id) => {
+    if (typeof onFavoriteToggle === 'function') {
+      onFavoriteToggle(id);
+      navigate('/profile'); // Navigate to profile page
+    } else {
+      console.error("onFavoriteToggle function is not passed to CarCard");
+    }
+  };
 
   return (
     <Card className="car-card">
@@ -40,23 +52,33 @@ const CarCard = ({ car }) => {
           </Box>
         </CardContent>
       </Link>
-      <Button
-        variant="contained"
-        sx={{
-          color: 'white',
-          width: '100%',
-          backgroundColor: '#E90224',
-          borderRadius: '10px',
-          fontFamily: 'Tajawal, sans-serif',
-          padding: '10px 0',
-          fontSize: '1em',
-          '&:hover': {
-            backgroundColor: '#ff0033',
-          },
-        }}
-      >
-        استئجار الآن →
-      </Button>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Button
+          variant="contained"
+          sx={{
+            color: 'white',
+            width: '75%',
+            backgroundColor: '#E90224',
+            borderRadius: '10px',
+            fontFamily: 'Tajawal, sans-serif',
+            padding: '10px 0',
+            fontSize: '1em',
+            '&:hover': {
+              backgroundColor: '#ff0033',
+            },
+          }}
+        >
+          استئجار الآن →
+        </Button>
+        <IconButton
+          onClick={() => handleFavoriteClick(id)}
+          sx={{
+            color: isFavorited ? 'red' : 'gray',
+          }}
+        >
+          <FavoriteIcon />
+        </IconButton>
+      </Box>
     </Card>
   );
 };

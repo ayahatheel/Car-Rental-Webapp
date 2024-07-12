@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Grid } from '@mui/material';
 import { useAuth } from '../contexts/authContext';
-import CarCard from "../Widgets/CarCard";
+import CarCard from '../Widgets/CarCard';
 
 const ProfilePage = () => {
   const { currentUser } = useAuth();
+  const [favorites, setFavorites] = useState([]);
 
-  // Dummy data for favorite items
-  const favorites = [
+  // Dummy data for favorite items (you can replace this with actual data from your API or database)
+  const allCars = [
     {
       id: 1,
-      image: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250',
-      name: 'جاكوار XE L P250',
-      rating: 4.8,
-      reviews: 36,
-      passengers: 4,
-      type: 'سوبر',
-      price: '25000 دينار / يوم'
+      Car_name: 'جاكوار XE L P250',
+      Seating_Capacity: 4,
+      price: '25000',
+      car_fule: 'بنزين',
+      car_image: { url: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250' },
+      car_image2: { url: 'https://via.placeholder.com/300x200?text=Jaguar+XE+L+P250' },
     },
     {
       id: 2,
-      image: 'https://via.placeholder.com/300x200?text=BMW+X5',
-      name: 'بي ام دبليو X5',
-      rating: 4.5,
-      reviews: 28,
-      passengers: 5,
-      type: 'عائلية',
-      price: '30000 دينار / يوم'
+      Car_name: 'بي ام دبليو X5',
+      Seating_Capacity: 5,
+      price: '30000',
+      car_fule: 'ديزل',
+      car_image: { url: 'https://via.placeholder.com/300x200?text=BMW+X5' },
+      car_image2: { url: 'https://via.placeholder.com/300x200?text=BMW+X5' },
     },
   ];
+
+  const handleFavoriteToggle = (carId) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(carId)
+        ? prevFavorites.filter((id) => id !== carId)
+        : [...prevFavorites, carId]
+    );
+  };
+
+  useEffect(() => {
+    // Load favorite cars from local storage or API
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
+  }, []);
+
+  useEffect(() => {
+    // Save favorite cars to local storage or API
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const favoriteCars = allCars.filter((car) => favorites.includes(car.id));
 
   return (
     <Container maxWidth="md">
@@ -47,9 +67,13 @@ const ProfilePage = () => {
           Favorite Items
         </Typography>
         <Grid container spacing={4}>
-          {favorites.map((item) => (
-            <Grid item key={item.id} xs={12} sm={6}>
-              <CarCard carData={item} />
+          {favoriteCars.map((car) => (
+            <Grid item key={car.id} xs={12} sm={6}>
+              <CarCard
+                car={car}
+                onFavoriteToggle={handleFavoriteToggle}
+                isFavorited={favorites.includes(car.id)}
+              />
             </Grid>
           ))}
         </Grid>
