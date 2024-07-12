@@ -8,11 +8,11 @@ import './CarCard.css';
 const CarCard = ({ car }) => {
   if (!car) return null; // Ensure car is defined
 
-  const { id, Car_name, Seating_Capacity, price, car_fule, car_image } = car;
+  const { id, Car_name, Seating_Capacity, price, car_fule, car_image, car_image2 } = car;
 
   return (
     <Card className="car-card">
-      <Link to={`/car/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to={`/car/${id}?image1=${encodeURIComponent(car_image.url)}&image2=${encodeURIComponent(car_image2.url)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <CardContent>
           <div className="car-image-container">
             <img src={car_image.url} alt={Car_name} className="car-image" />
