@@ -1,11 +1,22 @@
 .container {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
   max-width: 1200px;
   margin: auto;
   direction: rtl;
+  background-color: #f9f9f9;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .car-info, .rental-form {
@@ -15,11 +26,33 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 45%;
-  margin: 10px; /* Add margin between items */
+  margin: 10px;
+  animation: slideInUp 0.5s ease-in-out;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .car-info h1 {
   color: red;
+  font-size: 1.6em;
+}
+
+.car-info h2, .rental-form h2 {
+  margin-bottom: 20px;
+  font-size: 1.4em;
+}
+
+.car-info p, .rental-form p, .rental-form label {
+  font-size: 1em;
 }
 
 .rental-details {
@@ -29,6 +62,7 @@
 .days-selector {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .days-selector button {
@@ -39,6 +73,28 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.days-selector button:active {
+  animation: buttonClick 0.3s ease;
+}
+
+@keyframes buttonClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.days-selector button:hover {
+  background-color: darkred;
 }
 
 .days-selector span {
@@ -50,15 +106,17 @@
   background-color: red;
   color: white;
   border: none;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 12px;
+  margin-top: 15px;
   border-radius: 10px;
   cursor: pointer;
   width: 100%;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
 }
 
-.rental-form h2 {
-  margin-bottom: 20px;
+.rent-button:hover, .submit-button:hover {
+  background-color: darkred;
 }
 
 .raidosection {
@@ -69,20 +127,21 @@
 
 .raidosection input[type="radio"] {
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border: 2px solid #ccc;
   border-radius: 50%;
   margin-right: 10px;
   cursor: pointer;
   position: relative;
+  transition: border-color 0.3s ease;
 }
 
 .raidosection input[type="radio"]:checked::before {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: red;
   position: absolute;
@@ -91,16 +150,27 @@
   transform: translate(-50%, -50%);
 }
 
+.raidosection input[type="radio"]:hover {
+  border-color: red;
+}
+
 .raidosection label {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
 }
 
-.rental-form input[type="submit"], .rental-form input[type="text"] {
+.rental-form input[type="text"], .rental-form input[type="submit"] {
   padding: 10px;
   margin-bottom: 10px;
-  width: calc(100% - 22px); /* Adjusts input width to fit inside .rental-form */
+  width: calc(100% - 22px);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.rental-form input[type="text"]:focus {
+  border-color: red;
 }
 
 .submit-button.disabled {
@@ -122,10 +192,10 @@
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* Stacks items vertically on smaller screens */
+    flex-direction: column;
   }
 
   .car-info, .rental-form {
-    width: 100%; /* Makes items full width on smaller screens */
+    width: 100%;
   }
 }

@@ -31,6 +31,15 @@ function CarRentalform() {
       });
   }, [id]);
 
+  const handleClick = (func, selector) => {
+    func();
+    const button = document.querySelector(selector);
+    button.classList.add('button-click');
+    setTimeout(() => {
+      button.classList.remove('button-click');
+    }, 300); // Match the duration of the animation
+  };
+
   const decreaseDays = () => {
     if (days > 1) {
       setDays(days - 1);
@@ -77,9 +86,9 @@ function CarRentalform() {
         <div className="rental-details">
           <p><strong>عدد الأيام:</strong> <span>{carData.price} دينار عراقي/اليوم</span></p>
           <div className="days-selector">
-            <button onClick={decreaseDays}>-</button>
+            <button onClick={() => handleClick(decreaseDays, '.days-selector button:first-of-type')}>-</button>
             <span>{days}</span>
-            <button onClick={increaseDays}>+</button>
+            <button onClick={() => handleClick(increaseDays, '.days-selector button:last-of-type')}>+</button>
           </div>
           <button className="rent-button">استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</button>
         </div>

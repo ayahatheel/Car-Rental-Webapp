@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Feedback.css';
 import { useAuth } from '../contexts/authContext'; 
 import { Rating } from '@mui/material';
@@ -27,7 +27,18 @@ const Feedback = () => {
 
   const [newFeedback, setNewFeedback] = useState({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
 
-  const handleLeaveFeedbackClick = () => setIsFormVisible(true);
+  useEffect(() => {
+    setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
+  }, [currentUser]);
+
+  const handleLeaveFeedbackClick = () => {
+    if (currentUser) {
+      setIsFormVisible(true);
+    } else {
+      alert("Please log in to leave feedback.");
+    }
+  };
+
   const handleGoBackClick = () => setIsFormVisible(false);
 
   const handleInputChange = (e) => {
