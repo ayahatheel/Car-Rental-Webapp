@@ -1,9 +1,12 @@
-import "./SearchResult.css";
+import React from "react";
+import "./SearchResultsList.css";
 
-export const SearchResult = ({ result }) => {
+const SearchResult = ({ result }) => {
   return (
     <div className="search-result">
-    <div className="result-text">{result}</div>
-  </div>
+      <div className="result-text">{result}</div>
+    </div>
   );
 };
+
+export default SearchResult;

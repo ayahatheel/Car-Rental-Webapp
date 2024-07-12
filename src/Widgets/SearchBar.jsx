@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
-// import SearchResultsList from "./SearchResultsList"; // Default import
+import { CarContext } from '../components/CarContext';
 
 const SearchBar = ({ setResults }) => {
+  const { carData } = useContext(CarContext);
   const [input, setInput] = useState("");
-
-  const fetchData = (value) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((user) => {
-          return (
-            value &&
-            user &&
-            user.name &&
-            user.name.toLowerCase().includes(value.toLowerCase())
-          );
-        });
-        setResults(results);
-      });
-  };
 
   const handleChange = (value) => {
     setInput(value);
-    fetchData(value);
+    const results = carData.filter((car) => {
+      return (
+        value &&
+        car &&
+        car.Car_name &&
+        car.Car_name.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    setResults(results);
   };
 
   return (
