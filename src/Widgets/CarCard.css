@@ -20,7 +20,7 @@
   transition: transform 0.3s ease, border 0.3s ease;
   margin: 10px;
   padding: 15px;
-  width: 260px; /* Smaller width */
+  width: 260px; /* Default smaller width */
 }
 
 .car-card:hover {
@@ -113,10 +113,22 @@
 }
 
 .home-page {
-  display: grid; /* Use CSS Grid */
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Responsive columns */
-  gap: 20px; /* Reduced gap */
-  justify-content: center; /* Center items horizontally */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 0 100px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 0;
+  }
+  
+  .car-card {
+    width: 80%; /* Adjust the width for mobile */
+    margin: 10px auto; /* Center the card */
+  }
 }
 
 .button-container {
