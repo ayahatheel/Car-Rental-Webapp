@@ -35,7 +35,7 @@ const Feedback = () => {
     if (currentUser) {
       setIsFormVisible(true);
     } else {
-      alert("Please log in to leave feedback.");
+      alert("يرجى تسجيل الدخول لترك ملاحظة.");
     }
   };
 
@@ -47,13 +47,13 @@ const Feedback = () => {
   };
 
   const handleSubmitFeedback = () => {
-    if (newFeedback.email && newFeedback.location && newFeedback.rating && newFeedback.comment) {
+    if (newFeedback.location && newFeedback.rating && newFeedback.comment) {
       const feedback = { ...newFeedback, id: feedbacks.length + 1 };
       setFeedbacks([...feedbacks, feedback]);
       setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
       setIsFormVisible(false);
     } else {
-      alert("Please fill in all fields.");
+      alert("يرجى ملء جميع الحقول.");
     }
   };
 

@@ -29,7 +29,7 @@ export const getCurrentUser = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/auth/me`, {
       headers: {
-        // Add any necessary headers, such as authorization tokens
+        Authorization: `Bearer ${localStorage.getItem('token')}`, // Ensure the token is stored and sent in the headers
       }
     });
     return response.data;

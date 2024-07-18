@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Alert } from '@mui/material';
+import { useAuth } from '../contexts/authContext'; 
+import { Snackbar, Alert } from '@mui/material';
 import "./CarRentalform.css";
 
 function CarRentalform() {
+  const { currentUser } = useAuth(); 
   const [carData, setCarData] = useState(null);
   const [days, setDays] = useState(1);
   const [deliveryOption, setDeliveryOption] = useState('');
@@ -33,6 +35,10 @@ function CarRentalform() {
         console.error('Error fetching car data:', error);
       });
   }, [id]);
+
+  useEffect(() => {
+    setFormValues({ ...formValues, email: currentUser?.email || '' });
+  }, [currentUser]);
 
   const decreaseDays = () => {
     if (days > 1) {
@@ -79,6 +85,10 @@ function CarRentalform() {
       idcard: formValues.documents === 'personal-id',
       fee: parseInt(formValues.fee, 10),
       optdetails: formValues.extra,
+      carId: parseInt(id, 10),
+      carName: carData.Car_name,
+      carPricePerDay: carData.price,
+      userEmail: currentUser?.email,
       totalPrice: totalPrice
     };
 
@@ -86,10 +96,12 @@ function CarRentalform() {
       .then(response => {
         setAlertMessage('تم إرسال النموذج بنجاح!');
         setAlertSeverity('success');
+        console.log('Form submitted successfully:', response.data);
       })
       .catch(error => {
         setAlertMessage('حدث خطأ أثناء إرسال النموذج!');
         setAlertSeverity('error');
+        console.error('Error submitting form:', error);
       });
   };
 
