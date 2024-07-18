@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import "./CarRentalform.css";
 
 function CarRentalform() {
@@ -17,6 +18,8 @@ function CarRentalform() {
     extra: ''
   });
   const [isFormValid, setIsFormValid] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertSeverity, setAlertSeverity] = useState('success');
 
   const { id } = useParams(); // Assume car ID is passed as a URL parameter
 
@@ -30,15 +33,6 @@ function CarRentalform() {
         console.error('Error fetching car data:', error);
       });
   }, [id]);
-
-  const handleClick = (func, selector) => {
-    func();
-    const button = document.querySelector(selector);
-    button.classList.add('button-click');
-    setTimeout(() => {
-      button.classList.remove('button-click');
-    }, 300); // Match the duration of the animation
-  };
 
   const decreaseDays = () => {
     if (days > 1) {
@@ -72,6 +66,33 @@ function CarRentalform() {
 
   const totalPrice = carData.price * days;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const payload = {
+      username: formValues.fullName,
+      daysnumber: days,
+      airport: formValues.delivery === 'airport',
+      placedlivery: formValues.delivery === 'specific-location',
+      placedesc: formValues.address,
+      placeapart: formValues.optional,
+      pasport: formValues.documents === 'passport',
+      idcard: formValues.documents === 'personal-id',
+      fee: parseInt(formValues.fee, 10),
+      optdetails: formValues.extra,
+      totalPrice: totalPrice
+    };
+
+    axios.post('https://x8ki-letl-twmt.n7.xano.io/api:YxBomh6q/car_req', payload)
+      .then(response => {
+        setAlertMessage('تم إرسال النموذج بنجاح!');
+        setAlertSeverity('success');
+      })
+      .catch(error => {
+        setAlertMessage('حدث خطأ أثناء إرسال النموذج!');
+        setAlertSeverity('error');
+      });
+  };
+
   return (
     <div className="container">
       <div className="car-info">
@@ -86,17 +107,17 @@ function CarRentalform() {
         <div className="rental-details">
           <p><strong>عدد الأيام:</strong> <span>{carData.price} دينار عراقي/اليوم</span></p>
           <div className="days-selector">
-            <button onClick={() => handleClick(decreaseDays, '.days-selector button:first-of-type')}>-</button>
+            <button onClick={decreaseDays}>-</button>
             <span>{days}</span>
-            <button onClick={() => handleClick(increaseDays, '.days-selector button:last-of-type')}>+</button>
+            <button onClick={increaseDays}>+</button>
           </div>
-          <button className="rent-button">استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</button>
+          <p>استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</p>
         </div>
       </div>
 
       <div className="rental-form">
         <h2>معلومات الاستئجار</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="full-name">الاسم الكامل</label>
           <input type="text" id="full-name" name="fullName" placeholder="أدخل الاسم الكامل" onChange={handleInputChange} />
 
@@ -134,6 +155,11 @@ function CarRentalform() {
 
           <button type="submit" className={`submit-button ${isFormValid ? 'enabled' : 'disabled'}`} disabled={!isFormValid}>استئجار السيارة</button>
         </form>
+        {alertMessage && (
+          <Alert severity={alertSeverity} sx={{ mt: 2 }}>
+            {alertMessage}
+          </Alert>
+        )}
       </div>
     </div>
   );
