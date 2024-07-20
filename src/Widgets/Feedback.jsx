@@ -4,39 +4,32 @@ import { useAuth } from '../contexts/authContext';
 import { Rating } from '@mui/material';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import axios from 'axios';
 
-const Feedback = () => {
-  const { currentUser } = useAuth(); 
+const Feedback = ({ carId }) => {
+  const { currentUser, userLoggedIn } = useAuth(); 
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [feedbacks, setFeedbacks] = useState([
-    {
-      id: 1,
-      email: "user1@example.com",
-      location: "بغداد",
-      rating: 5,
-      comment: "استئجار نيسان جوك كان تغييرًا كبيرًا في مغامرتنا الخارجية. مساحة واسعة للأمتعة ومريحة للغاية للرحلات الطويلة!"
-    },
-    {
-      id: 2,
-      email: "user2@example.com",
-      location: "بغداد",
-      rating: 5,
-      comment: "استئجار نيسان جوك كان تجربة رائعة! ميزات السيارة الحديثة، المقاعد المريحة، والأداء السلس جعلت كل رحلة ممتعة."
-    }
-  ]);
+  const [feedbacks, setFeedbacks] = useState([]);
 
-  const [newFeedback, setNewFeedback] = useState({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
+  const [newFeedback, setNewFeedback] = useState({ name: '', location: '', rating: 0, comment: '' });
 
   useEffect(() => {
-    setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
-  }, [currentUser]);
+    if (carId) {
+      fetchFeedbacks(carId);
+    }
+  }, [carId]);
+
+  const fetchFeedbacks = async (carId) => {
+    try {
+      const response = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback?car_id=${carId}`);
+      setFeedbacks(response.data);
+    } catch (error) {
+      console.error('Error fetching feedbacks:', error);
+    }
+  };
 
   const handleLeaveFeedbackClick = () => {
-    if (currentUser) {
-      setIsFormVisible(true);
-    } else {
-      alert("يرجى تسجيل الدخول لترك ملاحظة.");
-    }
+    setIsFormVisible(true);
   };
 
   const handleGoBackClick = () => setIsFormVisible(false);
@@ -46,19 +39,29 @@ const Feedback = () => {
     setNewFeedback({ ...newFeedback, [name]: value });
   };
 
-  const handleSubmitFeedback = () => {
-    if (newFeedback.location && newFeedback.rating && newFeedback.comment) {
-      const feedback = { ...newFeedback, id: feedbacks.length + 1 };
-      setFeedbacks([...feedbacks, feedback]);
-      setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
-      setIsFormVisible(false);
+  const handleSubmitFeedback = async () => {
+    if (newFeedback.name && newFeedback.location && newFeedback.rating && newFeedback.comment) {
+      try {
+        const feedback = { ...newFeedback, car_id: carId };
+        const response = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback', feedback);
+        setFeedbacks([...feedbacks, response.data]);
+        setNewFeedback({ name: '', location: '', rating: 0, comment: '' });
+        setIsFormVisible(false);
+      } catch (error) {
+        console.error('Error submitting feedback:', error);
+      }
     } else {
       alert("يرجى ملء جميع الحقول.");
     }
   };
 
-  const handleDeleteFeedback = (id) => {
-    setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+  const handleDeleteFeedback = async (id) => {
+    try {
+      await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback/${id}`);
+      setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+    } catch (error) {
+      console.error('Error deleting feedback:', error);
+    }
   };
 
   return (
@@ -66,19 +69,17 @@ const Feedback = () => {
       <div className="feedback-content">
         <div className="header">
           <h2>إليك ما يقوله الآخرون عن هذه السيارة</h2>
-          {currentUser ? (
+          {userLoggedIn && (
             <button className="leave-feedback-button" onClick={handleLeaveFeedbackClick}>اترك ملاحظة</button>
-          ) : (
-            <p>يرجى تسجيل الدخول لترك ملاحظة.</p>
           )}
         </div>
         <div className="feedback-container">
           {feedbacks.map((feedback) => (
             <div key={feedback.id} className="feedback-card">
               <div className="feedback-header">
-                <span className="feedback-name">{feedback.email} - {feedback.location}</span>
+                <span className="feedback-name">{feedback.name} - {feedback.location}</span>
                 <Rating value={feedback.rating} readOnly />
-                {currentUser && feedback.email === currentUser.email && (
+                {currentUser && feedback.name === currentUser.name && (
                   <IconButton onClick={() => handleDeleteFeedback(feedback.id)}>
                     <DeleteIcon color="secondary" />
                   </IconButton>
@@ -96,11 +97,11 @@ const Feedback = () => {
             <h2>اكتب ملاحظاتك</h2>
             <input 
               type="text" 
-              name="email"
-              placeholder="أدخل بريدك الإلكتروني" 
+              name="name"
+              placeholder="أدخل اسمك" 
               className="feedback-input" 
-              value={newFeedback.email}
-              readOnly
+              value={newFeedback.name}
+              onChange={handleInputChange}
             />
             <input 
               type="text" 

@@ -1,6 +1,5 @@
-// AuthProvider/index.jsx
 import React, { useEffect, useState, useContext } from 'react';
-import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword } from '../../xanoAuth';
+import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword } from '../../xanoAuth';
 
 const AuthContext = React.createContext();
 
@@ -19,9 +18,11 @@ export function AuthProvider({ children }) {
         const user = await getCurrentUser();
         setCurrentUser(user);
         setUserLoggedIn(true);
+        console.log('User initialized:', user); // Debug
       } catch (error) {
         setCurrentUser(null);
         setUserLoggedIn(false);
+        console.error('Error initializing user:', error); // Debug
       } finally {
         setLoading(false);
       }
@@ -35,6 +36,18 @@ export function AuthProvider({ children }) {
       const user = await doCreateUserWithEmailAndPassword(email, password);
       setCurrentUser(user);
       setUserLoggedIn(true);
+      localStorage.setItem('token', user.token); // Store token
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const signIn = async (email, password) => {
+    try {
+      const user = await doSignInWithEmailAndPassword(email, password);
+      setCurrentUser(user);
+      setUserLoggedIn(true);
+      localStorage.setItem('token', user.token); // Store token
     } catch (error) {
       throw error;
     }
@@ -45,6 +58,7 @@ export function AuthProvider({ children }) {
       await doSignOut();
       setCurrentUser(null);
       setUserLoggedIn(false);
+      localStorage.removeItem('token'); // Clear token
     } catch (error) {
       console.error("Sign out error:", error);
     }
@@ -56,6 +70,7 @@ export function AuthProvider({ children }) {
     setUserLoggedIn,
     loading,
     signUp,
+    signIn,
     signOut,
   };
 
