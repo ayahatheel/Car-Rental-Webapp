@@ -1,15 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Button, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-
-const categories = [
-  { name: 'سيارات الرياضية' },
-  { name: 'سيارات الفخامة' },
-  { name: 'سيارات كهربائية' },
-  { name: 'سيارات مدمجة' },
-  { name: 'سيارات سيدان' },
-  { name: 'سيارات صغيرة' },
-];
+import { CarContext } from '../components/CarContext';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -44,27 +36,40 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const predefinedCategories = [
+  'جميع السيارات',
+  'سيارات رياضية',
+  'سيارات فخمة',
+  'سيارات كهربائية',
+  'سيارات مدمجة',
+  'سيارات سيدان',
+  'سيارات صغيرة',
+];
+
 const Categories = () => {
   const theme = useTheme();
-  const [selected, setSelected] = useState('سيارات الرياضية');
+  const { selectedCategory, setSelectedCategory } = useContext(CarContext);
 
   const handleCategoryClick = (categoryName) => {
-    setSelected(categoryName);
+    console.log('Category clicked:', categoryName); // Debugging log
+    setSelectedCategory(categoryName);
   };
 
   return (
-    <div style={{ overflowX: 'auto', padding: '20px', whiteSpace: 'nowrap', textAlign: 'center' }}>
-      <div style={{ display: 'inline-block' }}>
-        {categories.map(({ name }) => (
-          <StyledButton
-            key={name}
-            onClick={() => handleCategoryClick(name)}
-            className={selected === name ? 'Mui-selected' : ''}
-            theme={theme}
-          >
-            {name}
-          </StyledButton>
-        ))}
+    <div style={{ padding: '20px' }}>
+      <div style={{ overflowX: 'auto', whiteSpace: 'nowrap', textAlign: 'center' }}>
+        <div style={{ display: 'inline-block' }}>
+          {predefinedCategories.map((name) => (
+            <StyledButton
+              key={name}
+              onClick={() => handleCategoryClick(name)}
+              className={selectedCategory === name ? 'Mui-selected' : ''}
+              theme={theme}
+            >
+              {name}
+            </StyledButton>
+          ))}
+        </div>
       </div>
     </div>
   );

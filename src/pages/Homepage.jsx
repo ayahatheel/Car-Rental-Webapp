@@ -1,4 +1,3 @@
-// HomePage.jsx
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
@@ -8,11 +7,12 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography, useMediaQuery } from '@mui/material'; 
+import { Typography, useMediaQuery } from '@mui/material';
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 
 function Homepage() {
+  const { filteredCars, loading } = useContext(CarContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +20,7 @@ function Homepage() {
       elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        if (elementTop < windowHeight * 0.75) { 
+        if (elementTop < windowHeight * 0.75) {
           element.classList.add('visible');
         }
       });
@@ -32,9 +32,7 @@ function Homepage() {
     };
   }, []);
 
-  const isDesktop = useMediaQuery('(min-width:1280px)'); // Use a media query string directly
-
-  const { carData, loading } = useContext(CarContext);
+  const isDesktop = useMediaQuery('(min-width:1280px)');
 
   if (loading) return <p>Loading...</p>; // Handle loading state
 
@@ -43,7 +41,7 @@ function Homepage() {
       <AdvertisementModal />
       <Mainsentn />
 
-      {isDesktop && ( // Render Typography only on large screens
+      {isDesktop && (
         <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
           اختر حسب الفئة
         </Typography>
@@ -63,9 +61,13 @@ function Homepage() {
       )}
 
       <div className="home-page">
-        {carData.map(car => (
-          <CarCard key={car.id} car={car} />
-        ))}
+        {filteredCars.length > 0 ? (
+          filteredCars.map(car => (
+            <CarCard key={car.id} car={car} />
+          ))
+        ) : (
+          <Typography variant="h6">No cars available for this category.</Typography>
+        )}
       </div>
 
       <div className="button-container">
