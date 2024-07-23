@@ -1,78 +1,85 @@
-import React, { useContext } from 'react';
-import { Button, useTheme } from '@mui/material';
-import { styled } from '@mui/system';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Typography, useMediaQuery } from '@mui/material';
 import { CarContext } from '../components/CarContext';
+import Ads from '../Widgets/Ads';
+import CarCard from "../Widgets/CarCard";
+import Categories from "../Widgets/Categories";
+import "../Widgets/CarCard.css";
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  color: theme.palette.text.primary,
-  border: `1px solid ${theme.palette.divider}`,
-  borderRadius: theme.shape.borderRadius,
-  margin: '0 5px',
-  padding: '10px 20px',
-  fontWeight: 'bold',
-  textTransform: 'none',
-  transition: 'border-radius 0.3s ease, border-color 0.7s ease',
-  '&:hover': {
-    backgroundColor: theme.palette.action.hover,
-    borderColor: 'red',
-    borderRadius: '15px',
-  },
-  '&.Mui-selected': {
-    backgroundColor: theme.palette.background.paper,
-    borderColor: 'red',
-    color: 'red',
-    borderRadius: '15px',
-  },
-  '@media (max-width: 768px)': {
-    minWidth: '120px',
-    padding: '10px 15px',
-    fontSize: '0.7rem',
-  },
-  '@media (max-width: 480px)': {
-    minWidth: '160px',
-    padding: '10px 20px',
-    fontSize: '0.7rem',
-  },
-}));
+function Carlisting() {
+  const { filteredCars, loading } = useContext(CarContext);
+  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('lg'));
 
-const predefinedCategories = [
-  'جميع السيارات',
-  'سيارات رياضية',
-  'سيارات فخمة',
-  'سيارات كهربائية',
-  'سيارات مدمجة',
-  'سيارات سيدان',
-  'سيارات صغيرة',
-];
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementTop < windowHeight * 0.75) {
+          element.classList.add('visible');
+        }
+      });
+    };
 
-const Categories = () => {
-  const theme = useTheme();
-  const { selectedCategory, setSelectedCategory } = useContext(CarContext);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-  const handleCategoryClick = (categoryName) => {
-    console.log('Category clicked:', categoryName); // Debugging log
-    setSelectedCategory(categoryName);
-  };
+  if (loading) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: '20px' }}>
-      <div style={{ overflowX: 'auto', whiteSpace: 'nowrap', textAlign: 'center' }}>
-        <div style={{ display: 'inline-block' }}>
-          {predefinedCategories.map((name) => (
-            <StyledButton
-              key={name}
-              onClick={() => handleCategoryClick(name)}
-              className={selectedCategory === name ? 'Mui-selected' : ''}
-              theme={theme}
-            >
-              {name}
-            </StyledButton>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+    <>
+      {isDesktop && (
+        <Typography variant="h6" sx={{ margin: '10px 100px 0 0', padding: 0, textAlign: 'right' }}>
+          اخر العروض
+        </Typography>
+      )}
+      <Ads />
 
-export default Categories;
+      {isDesktop && (
+        <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
+          اختر حسب الفئة
+        </Typography>
+      )}
+      <Categories />
+
+      {isDesktop && (
+        <div className="fade-in">
+          <Typography variant="h5" sx={{ margin: '10px 100px 0 0', padding: 0, textAlign: 'right' }}>
+            استكشف اختياراتك
+          </Typography>
+          <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right' }}>
+            واختر سيارتك المثالية لمغامرتك القادمة
+          </Typography>
+        </div>
+      )}
+
+      <div className="card-grid">
+        {filteredCars.length > 0 ? (
+          filteredCars.map(car => (
+            <Link
+              key={car.id}
+              to={`/Cardetails/${car.id}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+              className={isDesktop ? "card-grid-item fade-in" : "card-grid-item"}
+            >
+              <CarCard car={car} />
+            </Link>
+          ))
+        ) : (
+          <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'center' }}>لا يوجد سيارات في ضمن الفئة المختار</Typography>
+        )}
+      </div>
+
+      <div className="button-container">
+        <button className="load-button">المزيد من السيارات</button>
+      </div>
+    </>
+  );
+}
+
+export default Carlisting;
