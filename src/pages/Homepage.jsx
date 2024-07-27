@@ -1,4 +1,3 @@
-// HomePage.jsx
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
@@ -8,12 +7,11 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography, useMediaQuery } from '@mui/material'; 
+import { Typography, useMediaQuery, Button } from '@mui/material'; 
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 
 function Homepage() {
-
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.fade-in');
@@ -34,7 +32,7 @@ function Homepage() {
 
   const isDesktop = useMediaQuery('(min-width:1280px)'); // Use a media query string directly
 
-  const { carData, loading } = useContext(CarContext);
+  const { loading, filteredCars, setSelectedCategory } = useContext(CarContext);
 
   if (loading) return <p>Loading...</p>; // Handle loading state
 
@@ -63,12 +61,13 @@ function Homepage() {
       )}
 
       <div className="home-page">
-        {carData.map(car => (
+        {filteredCars.map(car => (
           <CarCard key={car.id} car={car} />
         ))}
       </div>
 
       <div className="button-container">
+        {/* <Button onClick={() => setSelectedCategory('جميع السيارات')}>عرض جميع السيارات</Button> */}
         <Link to="/Carlisting">
           <button className="load-button">المزيد من السيارات</button>
         </Link>

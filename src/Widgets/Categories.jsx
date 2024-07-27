@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Button, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
+import { CarContext } from '../components/CarContext';
 
 const categories = [
-  { name: 'سيارات الرياضية' },
-  { name: 'سيارات الفخامة' },
+  { name: 'جميع السيارات' }, // "All Cars" button
+  { name: 'سيارات رياضية' },
+  { name: 'سيارات فخمة' },
   { name: 'سيارات كهربائية' },
   { name: 'سيارات مدمجة' },
   { name: 'سيارات سيدان' },
@@ -46,10 +48,10 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const Categories = () => {
   const theme = useTheme();
-  const [selected, setSelected] = useState('سيارات الرياضية');
+  const { selectedCategory, setSelectedCategory } = useContext(CarContext);
 
   const handleCategoryClick = (categoryName) => {
-    setSelected(categoryName);
+    setSelectedCategory(categoryName);
   };
 
   return (
@@ -59,7 +61,7 @@ const Categories = () => {
           <StyledButton
             key={name}
             onClick={() => handleCategoryClick(name)}
-            className={selected === name ? 'Mui-selected' : ''}
+            className={selectedCategory === name ? 'Mui-selected' : ''}
             theme={theme}
           >
             {name}
