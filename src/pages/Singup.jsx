@@ -6,24 +6,15 @@ import { useAuth } from '../contexts/authContext';
 
 function Signup() {
   const { signUp, userLoggedIn } = useAuth();
-  const [formValues, setFormValues] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, password, confirmPassword } = formValues;
-
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
       setError('يرجى ملء جميع الحقول');
       return;
@@ -51,50 +42,44 @@ function Signup() {
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="name-fields">
-           
             <input
               type="text"
-              name="lastName"
               placeholder="الاسم الثاني"
-              value={formValues.lastName}
-              onChange={handleInputChange}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               required
               onFocus={(e) => e.target.select()}
             />
-             <input
+            <input
               type="text"
-              name="firstName"
               placeholder="الاسم الأول"
-              value={formValues.firstName}
-              onChange={handleInputChange}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               required
               onFocus={(e) => e.target.select()}
             />
           </div>
           <input
             type="email"
-            name="email"
             placeholder="البريد الإلكتروني"
-            value={formValues.email}
-            onChange={handleInputChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             onFocus={(e) => e.target.select()}
           />
           <input
             type="password"
-            name="password"
             placeholder="كلمة المرور"
-            value={formValues.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             onFocus={(e) => e.target.select()}
           />
           <input
             type="password"
-            name="confirmPassword"
             placeholder="تأكيد كلمة المرور"
-            value={formValues.confirmPassword}
-            onChange={handleInputChange}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
             onFocus={(e) => e.target.select()}
           />

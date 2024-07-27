@@ -66,7 +66,7 @@ function Homepage() {
             <CarCard key={car.id} car={car} />
           ))
         ) : (
-          <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'center' }}>لا يوجد سيارات في ضمن الفئة المختار</Typography>
+          <Typography variant="h6">No cars available for this category.</Typography>
         )}
       </div>
 
