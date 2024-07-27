@@ -10,7 +10,7 @@ import Testimonial from "../Widgets/Testimonial";
 import { Typography, useMediaQuery } from '@mui/material';
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
-
+ 
 function Homepage() {
   const { filteredCars, loading } = useContext(CarContext);
 
