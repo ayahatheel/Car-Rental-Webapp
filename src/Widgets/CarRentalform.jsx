@@ -37,7 +37,7 @@ function CarRentalform() {
 
   useEffect(() => {
     setFormValues({ ...formValues, email: currentUser?.email || '' });
-  }, [currentUser]);
+  }, [currentUser, formValues]);
 
   const decreaseDays = () => {
     if (days > 1) {
