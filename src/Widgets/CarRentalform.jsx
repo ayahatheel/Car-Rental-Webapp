@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext'; 
-import { Snackbar, Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 import "./CarRentalform.css";
 
 function CarRentalform() {
