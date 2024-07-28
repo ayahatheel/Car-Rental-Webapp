@@ -7,7 +7,7 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography, useMediaQuery, Button } from '@mui/material'; 
+import { Typography, useMediaQuery } from '@mui/material'; 
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 
@@ -30,18 +30,18 @@ function Homepage() {
     };
   }, []);
 
-  const isDesktop = useMediaQuery('(min-width:1280px)'); // Use a media query string directly
+  const isDesktop = useMediaQuery('(min-width:1280px)');
 
-  const { loading, filteredCars, setSelectedCategory } = useContext(CarContext);
+  const { loading, filteredCars } = useContext(CarContext);
 
-  if (loading) return <p>Loading...</p>; // Handle loading state
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
       <AdvertisementModal />
       <Mainsentn />
 
-      {isDesktop && ( // Render Typography only on large screens
+      {isDesktop && (
         <Typography variant="h5" sx={{ margin: '30px 100px 0 0', padding: 0, textAlign: 'right' }}>
           اختر حسب الفئة
         </Typography>
@@ -67,7 +67,6 @@ function Homepage() {
       </div>
 
       <div className="button-container">
-        {/* <Button onClick={() => setSelectedCategory('جميع السيارات')}>عرض جميع السيارات</Button> */}
         <Link to="/Carlisting">
           <button className="load-button">المزيد من السيارات</button>
         </Link>

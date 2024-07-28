@@ -23,10 +23,9 @@ function CarRentalform() {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertSeverity, setAlertSeverity] = useState('success');
 
-  const { id } = useParams(); // Assume car ID is passed as a URL parameter
+  const { id } = useParams();
 
   useEffect(() => {
-    // Fetch car details based on the car ID
     axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:IzeJrQwI/carinfo/${id}`)
       .then(response => {
         setCarData(response.data);
@@ -68,7 +67,7 @@ function CarRentalform() {
     setIsFormValid(isValid);
   }, [formValues, deliveryOption]);
 
-  if (!carData) return <p>Loading...</p>; // Handle loading state
+  if (!carData) return <p>Loading...</p>;
 
   const totalPrice = carData.price * days;
 
