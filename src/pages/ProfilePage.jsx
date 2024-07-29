@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Grid, Card, CardContent, CardMedia, Button, IconButton } from '@mui/material';
 import { useAuth } from '../contexts/authContext';
 import { Favorite, Edit, Delete } from '@mui/icons-material';
+import EditRentalModal from '../Widgets/EditRentalModal';
+import "../Widgets/CarRentalform.css"; // Reusing the same CSS file for consistency
 
 const ProfilePage = () => {
   const { currentUser } = useAuth();
   const [rentalData, setRentalData] = useState([]);
   const [favoriteCars, setFavoriteCars] = useState([]);
+  const [editOpen, setEditOpen] = useState(false);
+  const [currentRental, setCurrentRental] = useState(null);
 
   useEffect(() => {
     const existingRequests = JSON.parse(localStorage.getItem('rentalRequests')) || [];
@@ -23,8 +27,18 @@ const ProfilePage = () => {
     localStorage.setItem('rentalRequests', JSON.stringify(updatedRequests));
   };
 
-  const handleEditRental = (carId) => {
-    // Logic to handle editing rental information
+  const handleEditRental = (rental) => {
+    setCurrentRental(rental);
+    setEditOpen(true);
+  };
+
+  const handleSaveEdit = (updatedRental) => {
+    const updatedRequests = rentalData.map(request =>
+      request.carId === updatedRental.carId ? updatedRental : request
+    );
+    setRentalData(updatedRequests);
+    localStorage.setItem('rentalRequests', JSON.stringify(updatedRequests));
+    setEditOpen(false);
   };
 
   const carDetails = (carId) => {
@@ -75,15 +89,31 @@ const ProfilePage = () => {
                   <Box display="flex" justifyContent="space-between" p={2}>
                     <Button
                       variant="contained"
-                      color="primary"
+                      sx={{
+                        color: 'white',
+                        backgroundColor: '#E90224',
+                        '&:hover': {
+                          backgroundColor: 'white',
+                          color: '#E90224',
+                        },
+                        fontFamily: 'Tajawal, sans-serif',
+                      }}
                       startIcon={<Edit />}
-                      onClick={() => handleEditRental(rental.carId)}
+                      onClick={() => handleEditRental(rental)}
                     >
                       تعديل
                     </Button>
                     <Button
                       variant="contained"
-                      color="secondary"
+                      sx={{
+                        color: 'white',
+                        backgroundColor: '#E90224',
+                        '&:hover': {
+                          backgroundColor: 'white',
+                          color: '#E90224',
+                        },
+                        fontFamily: 'Tajawal, sans-serif',
+                      }}
                       startIcon={<Delete />}
                       onClick={() => handleRemoveRental(rental.carId)}
                     >
@@ -135,6 +165,14 @@ const ProfilePage = () => {
           )}
         </Grid>
       </Box>
+      {currentRental && (
+        <EditRentalModal
+          open={editOpen}
+          handleClose={() => setEditOpen(false)}
+          rentalData={currentRental}
+          handleSave={handleSaveEdit}
+        />
+      )}
     </Container>
   );
 };

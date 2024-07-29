@@ -87,6 +87,7 @@ function CarRentalform() {
       carId: parseInt(id, 10),
       carName: carData.Car_name,
       carPricePerDay: carData.price,
+      carImage: carData.car_image.url, // Storing the car image URL
       userEmail: currentUser?.email,
       totalPrice: totalPrice
     };
