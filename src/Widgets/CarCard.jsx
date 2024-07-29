@@ -1,15 +1,14 @@
-// CarCard.jsx
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Button, Box, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/authContext'; // Ensure this import matches your auth context path
+import { useAuth } from '../contexts/authContext';
 import './CarCard.css';
 
 const CarCard = ({ car }) => {
-  const { userLoggedIn } = useAuth(); // Use userLoggedIn from the auth context
+  const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
