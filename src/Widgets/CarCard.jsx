@@ -1,3 +1,4 @@
+// CarCard.jsx
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Button, Box, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
@@ -7,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext'; // Ensure this import matches your auth context path
 import './CarCard.css';
 
-const CarCard = ({ car, onFavoriteToggle, isFavorited }) => {
+const CarCard = ({ car }) => {
   const { userLoggedIn } = useAuth(); // Use userLoggedIn from the auth context
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -16,13 +17,15 @@ const CarCard = ({ car, onFavoriteToggle, isFavorited }) => {
 
   const { id, Car_name, Seating_Capacity, price, car_fule, car_image, car_image2 } = car;
 
-  const handleFavoriteClick = (id) => {
-    if (typeof onFavoriteToggle === 'function') {
-      onFavoriteToggle(id);
-      navigate('/profile'); // Navigate to profile page
+  const handleFavoriteClick = () => {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.includes(id)) {
+      favorites = favorites.filter(favId => favId !== id);
     } else {
-      console.error("onFavoriteToggle function is not passed to CarCard");
+      favorites.push(id);
     }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    navigate('/profile'); // Navigate to profile page
   };
 
   const handleRentClick = () => {
@@ -36,6 +39,8 @@ const CarCard = ({ car, onFavoriteToggle, isFavorited }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const isFavorited = JSON.parse(localStorage.getItem('favorites'))?.includes(id);
 
   return (
     <>
@@ -89,7 +94,7 @@ const CarCard = ({ car, onFavoriteToggle, isFavorited }) => {
             استئجار الآن →
           </Button>
           <IconButton
-            onClick={() => handleFavoriteClick(id)}
+            onClick={handleFavoriteClick}
             sx={{
               color: isFavorited ? 'red' : 'gray',
               '&:hover': {
