@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Feedback.css';
 import { useAuth } from '../contexts/authContext'; 
 import { Rating } from '@mui/material';
@@ -11,32 +11,24 @@ const Feedback = () => {
   const [feedbacks, setFeedbacks] = useState([
     {
       id: 1,
-      email: "user1@example.com",
+      name: "User One",
       location: "بغداد",
       rating: 5,
       comment: "استئجار نيسان جوك كان تغييرًا كبيرًا في مغامرتنا الخارجية. مساحة واسعة للأمتعة ومريحة للغاية للرحلات الطويلة!"
     },
     {
       id: 2,
-      email: "user2@example.com",
+      name: "User Two",
       location: "بغداد",
       rating: 5,
       comment: "استئجار نيسان جوك كان تجربة رائعة! ميزات السيارة الحديثة، المقاعد المريحة، والأداء السلس جعلت كل رحلة ممتعة."
     }
   ]);
 
-  const [newFeedback, setNewFeedback] = useState({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
-
-  useEffect(() => {
-    setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
-  }, [currentUser]);
+  const [newFeedback, setNewFeedback] = useState({ name: '', location: '', rating: 0, comment: '' });
 
   const handleLeaveFeedbackClick = () => {
-    if (currentUser) {
-      setIsFormVisible(true);
-    } else {
-      alert("يرجى تسجيل الدخول لترك ملاحظة.");
-    }
+    setIsFormVisible(true);
   };
 
   const handleGoBackClick = () => setIsFormVisible(false);
@@ -47,10 +39,10 @@ const Feedback = () => {
   };
 
   const handleSubmitFeedback = () => {
-    if (newFeedback.location && newFeedback.rating && newFeedback.comment) {
+    if (newFeedback.name && newFeedback.location && newFeedback.rating && newFeedback.comment) {
       const feedback = { ...newFeedback, id: feedbacks.length + 1 };
       setFeedbacks([...feedbacks, feedback]);
-      setNewFeedback({ email: currentUser?.email || '', location: '', rating: 0, comment: '' });
+      setNewFeedback({ name: '', location: '', rating: 0, comment: '' });
       setIsFormVisible(false);
     } else {
       alert("يرجى ملء جميع الحقول.");
@@ -66,19 +58,15 @@ const Feedback = () => {
       <div className="feedback-content">
         <div className="header">
           <h2>إليك ما يقوله الآخرون عن هذه السيارة</h2>
-          {currentUser ? (
-            <button className="leave-feedback-button" onClick={handleLeaveFeedbackClick}>اترك ملاحظة</button>
-          ) : (
-            <p>يرجى تسجيل الدخول لترك ملاحظة.</p>
-          )}
+          <button className="leave-feedback-button" onClick={handleLeaveFeedbackClick}>اترك ملاحظة</button>
         </div>
         <div className="feedback-container">
           {feedbacks.map((feedback) => (
             <div key={feedback.id} className="feedback-card">
               <div className="feedback-header">
-                <span className="feedback-name">{feedback.email} - {feedback.location}</span>
+                <span className="feedback-name">{feedback.name} - {feedback.location}</span>
                 <Rating value={feedback.rating} readOnly />
-                {currentUser && feedback.email === currentUser.email && (
+                {currentUser && feedback.name === currentUser.name && (
                   <IconButton onClick={() => handleDeleteFeedback(feedback.id)}>
                     <DeleteIcon color="secondary" />
                   </IconButton>
@@ -96,11 +84,11 @@ const Feedback = () => {
             <h2>اكتب ملاحظاتك</h2>
             <input 
               type="text" 
-              name="email"
-              placeholder="أدخل بريدك الإلكتروني" 
+              name="name"
+              placeholder="أدخل اسمك" 
               className="feedback-input" 
-              value={newFeedback.email}
-              readOnly
+              value={newFeedback.name}
+              onChange={handleInputChange}
             />
             <input 
               type="text" 
