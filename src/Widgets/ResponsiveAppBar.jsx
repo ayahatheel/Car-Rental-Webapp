@@ -14,7 +14,7 @@ import { useAuth } from '../contexts/authContext'; // Import useAuth hook from y
 
 const pages = [
   { name: 'الرئيسية', link: '/' },
-  { name: 'عرض السيارات', link: '/Carlisting' },
+  // { name: 'عرض السيارات', link: '/Carlisting' },
   { name: 'خدماتنا', link: '/services' },
   { name: 'تواصل معنا', link: '/Contactus' },
 ];
