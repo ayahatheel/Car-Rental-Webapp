@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, CardContent, Typography, Button, Box, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, Typography, Button, Box, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, Alert } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -11,20 +11,43 @@ const CarCard = ({ car }) => {
   const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      setIsFavorited(favorites.includes(car.id));
+    } else {
+      setIsFavorited(false);
+    }
+  }, [car.id, userLoggedIn]);
 
   if (!car) return null;
 
   const { id, Car_name, Seating_Capacity, price, car_fule, car_image, car_image2 } = car;
 
   const handleFavoriteClick = () => {
+    if (!userLoggedIn) {
+      setOpen(true);
+      return;
+    }
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    let message = '';
     if (favorites.includes(id)) {
       favorites = favorites.filter(favId => favId !== id);
+      message = 'تم إزالة السيارة من المفضلة';
     } else {
       favorites.push(id);
+      message = 'تم إضافة السيارة إلى المفضلة';
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    alert('تم إضافة السيارة إلى المفضلة');
+    setSnackbarMessage(message);
+    setSnackbarSeverity('success');
+    setSnackbarOpen(true);
+    setIsFavorited(favorites.includes(id));
   };
 
   const handleRentClick = () => {
@@ -39,7 +62,9 @@ const CarCard = ({ car }) => {
     setOpen(false);
   };
 
-  const isFavorited = JSON.parse(localStorage.getItem('favorites'))?.includes(id);
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <>
@@ -134,6 +159,17 @@ const CarCard = ({ car }) => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

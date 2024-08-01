@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
 import FAQ from "../../src/Widgets/FAQ";
 import CarCard from "../Widgets/CarCard";
@@ -67,11 +67,11 @@ function Homepage() {
         ))}
       </div>
 
-      <div className="button-container">
+      {/* <div className="button-container">
         <Link to="/Carlisting">
           <button className="load-button">المزيد من السيارات</button>
         </Link>
-      </div>
+      </div> */}
  
       {/* <Ads/> */}
 

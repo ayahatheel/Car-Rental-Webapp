@@ -15,7 +15,7 @@ import { useAuth } from '../contexts/authContext'; // Import useAuth hook from y
 const pages = [
   { name: 'الرئيسية', link: '/' },
   // { name: 'عرض السيارات', link: '/Carlisting' },
-  { name: 'المفضلة', link: '/favorites' },
+  // { name: 'المفضلة', link: '/favorites' },
   { name: 'خدماتنا', link: '/services' },
   { name: 'تواصل معنا', link: '/Contactus' },
 ];
@@ -141,8 +141,7 @@ function ResponsiveAppBar() {
               {userLoggedIn ? (
                 <>
                   <Button component={Link} to="/profile" sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
-                    الملف الشخصي
-                  </Button>
+سياراتي المفضلة                  </Button>
                   <Button onClick={handleSignOut} sx={{ color: 'black', mr: 2, fontFamily: 'Tajawal, sans-serif' }}>
                     تسجيل الخروج
                   </Button>
