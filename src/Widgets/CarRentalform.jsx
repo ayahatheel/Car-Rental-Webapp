@@ -7,8 +7,6 @@ import "./CarRentalform.css";
 
 function CarRentalform() {
   const { currentUser } = useAuth(); 
-  const { id } = useParams();
-
   const [carData, setCarData] = useState(null);
   const [days, setDays] = useState(1);
   const [deliveryOption, setDeliveryOption] = useState('');
@@ -25,6 +23,8 @@ function CarRentalform() {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertSeverity, setAlertSeverity] = useState('success');
 
+  const { id } = useParams();
+
   useEffect(() => {
     axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:IzeJrQwI/carinfo/${id}`)
       .then(response => {
@@ -34,6 +34,10 @@ function CarRentalform() {
         console.error('Error fetching car data:', error);
       });
   }, [id]);
+
+  useEffect(() => {
+    setFormValues({ ...formValues, email: currentUser?.email || '' });
+  }, [currentUser]);
 
   const decreaseDays = () => {
     if (days > 1) {
@@ -47,10 +51,10 @@ function CarRentalform() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormValues(prevValues => ({
-      ...prevValues,
+    setFormValues({
+      ...formValues,
       [name]: value
-    }));
+    });
   };
 
   const handleDeliveryChange = (event) => {
@@ -59,11 +63,7 @@ function CarRentalform() {
   };
 
   useEffect(() => {
-    const isValid = formValues.fullName.trim() !== '' &&
-                    formValues.delivery.trim() !== '' &&
-                    formValues.documents.trim() !== '' &&
-                    formValues.fee.trim() !== '' &&
-                    (formValues.delivery !== 'specific-location' || formValues.address.trim() !== '');
+    const isValid = formValues.fullName && formValues.delivery && formValues.documents && formValues.fee && (deliveryOption !== 'specific-location' || formValues.address);
     setIsFormValid(isValid);
   }, [formValues, deliveryOption]);
 
@@ -87,18 +87,21 @@ function CarRentalform() {
       carId: parseInt(id, 10),
       carName: carData.Car_name,
       carPricePerDay: carData.price,
-      carImage: carData.car_image.url, // Storing the car image URL
       userEmail: currentUser?.email,
       totalPrice: totalPrice
     };
 
-    // Store the rental request data in local storage
-    const existingRequests = JSON.parse(localStorage.getItem('rentalRequests')) || [];
-    existingRequests.push(payload);
-    localStorage.setItem('rentalRequests', JSON.stringify(existingRequests));
-
-    setAlertMessage('تم إرسال النموذج بنجاح!');
-    setAlertSeverity('success');
+    axios.post('https://x8ki-letl-twmt.n7.xano.io/api:YxBomh6q/car_req', payload)
+      .then(response => {
+        setAlertMessage('تم إرسال النموذج بنجاح!');
+        setAlertSeverity('success');
+        console.log('Form submitted successfully:', response.data);
+      })
+      .catch(error => {
+        setAlertMessage('حدث خطأ أثناء إرسال النموذج!');
+        setAlertSeverity('error');
+        console.error('Error submitting form:', error);
+      });
   };
 
   return (
