@@ -24,7 +24,7 @@ const CarCard = ({ car }) => {
       favorites.push(id);
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    navigate('/profile'); // Navigate to profile page
+    alert('تم إضافة السيارة إلى المفضلة');
   };
 
   const handleRentClick = () => {

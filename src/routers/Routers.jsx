@@ -2,11 +2,10 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Login from "../pages/Login";
+import FavPage from "../pages/FavPage";
 import Singup from "../pages/Singup";
 import Carderails from "../pages/Carderails";
-// import CarCard from "../Widgets/CarCard";
 import Contactus from "../pages/Contcatus";
-// import { BrowserRouter } from 'react-router-dom';
 import Services from "../pages/Services";
 import Carlisting from "../pages/Carlisting";
 import ProfilePage from '../pages/ProfilePage';
@@ -28,11 +27,10 @@ const Routers = () => {
       <Route path="/Cardetails" element={<Carderails />} />
       <Route path="/Contactus" element={<Contactus />} />
       <Route path="/Services" element={<Services />} />
+      <Route path="/favorites" element={<FavPage />} />
       <Route path="/profile" element={<PrivateRoute element={<ProfilePage />} />} />
-      {/* Add other routes here */}
     </Routes>
   );
 };
-
 
 export default Routers;
