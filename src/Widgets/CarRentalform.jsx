@@ -35,10 +35,6 @@ function CarRentalform() {
       });
   }, [id]);
 
-  useEffect(() => {
-    setFormValues({ ...formValues, email: currentUser?.email || '' });
-  }, [currentUser]);
-
   const decreaseDays = () => {
     if (days > 1) {
       setDays(days - 1);
@@ -111,18 +107,17 @@ function CarRentalform() {
         <h1>{carData.Car_name}</h1>
         <p><strong>سنة الصنع:</strong> {carData.Year_of_Manufacture}</p>
         <p><strong>نوع الوقود:</strong> {carData.car_fule}</p>
-        <p><strong>نوع الناقل:</strong> {carData.transmission}</p>
         <p><strong>سعة التواجد:</strong> {carData.Seating_Capacity}</p>
         <h3>الميزات والمرافق:</h3>
         <p>{carData.Features_and_Amenities}</p>
         <div className="rental-details">
           <p><strong>عدد الأيام:</strong> <span>{carData.price} دينار عراقي/اليوم</span></p>
           <div className="days-selector">
-            <button onClick={decreaseDays}>-</button>
-            <span>{days}</span>
-            <button onClick={increaseDays}>+</button>
+            <button className="day-button" onClick={decreaseDays}>-</button>
+            <span className="days-value">{days}</span>
+            <button className="day-button" onClick={increaseDays}>+</button>
           </div>
-          <p>استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</p>
+          <p className="total-price">استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</p>
         </div>
       </div>
 

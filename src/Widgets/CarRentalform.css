@@ -62,44 +62,40 @@
 .days-selector {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
+  border: 1px solid #FF0000;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-.days-selector button {
+.day-button {
   width: 30px;
   height: 30px;
-  background-color: red;
-  color: white;
+  background-color: #FFFFFF;
+  color: #FF0000;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.days-selector button:active {
-  animation: buttonClick 0.3s ease;
-}
-
-@keyframes buttonClick {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.days-selector button:hover {
-  background-color: darkred;
-}
-
-.days-selector span {
-  margin: 0 10px;
   font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.day-button:hover {
+  background-color: #FF0000;
+  color: #FFFFFF;
+}
+
+.days-value {
+  font-size: 1.2em;
+  margin: 0 10px;
+}
+
+.total-price {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #FF0000;
+  margin-top: 10px;
 }
 
 .rent-button, .submit-button {
