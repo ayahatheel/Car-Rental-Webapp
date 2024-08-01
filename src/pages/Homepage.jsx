@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
 import FAQ from "../../src/Widgets/FAQ";
 import CarCard from "../Widgets/CarCard";
+// import Ads from "../Widgets/Ads";
 import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
@@ -72,6 +73,8 @@ function Homepage() {
         </Link>
       </div>
  
+      {/* <Ads/> */}
+
       <FAQ />
       <Chat />
       <Testimonial />
