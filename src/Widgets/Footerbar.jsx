@@ -119,9 +119,6 @@ const Footerbar = () => {
                 <FooterLink to="/home">الرئيسية</FooterLink>
                 <FooterLink to="/services">خدماتنا</FooterLink>
                 <FooterLink to="/contactus">اتصل بنا</FooterLink>
-                <FooterLink to="/about">من نحن</FooterLink>
-                <FooterLink to="/portfolio">معرض الأعمال</FooterLink>
-                <FooterLink to="/team">فريقنا</FooterLink>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
