@@ -127,6 +127,9 @@ function CarRentalform() {
           <label htmlFor="full-name">الاسم الكامل</label>
           <input type="text" id="full-name" name="fullName" placeholder="أدخل الاسم الكامل" onChange={handleInputChange} />
 
+          <label htmlFor="fee">رقم الهاتف</label>
+          <input type="text" id="fee" name="fee" placeholder="07000000000" onChange={handleInputChange} />
+
           <p>موقع التسليم</p>
           <div className='raidosection'>
             <input type="radio" id="airport" name="delivery" value="airport" onChange={handleDeliveryChange} />
@@ -154,7 +157,7 @@ function CarRentalform() {
             <label htmlFor="personal-id">الهوية الشخصية</label>
           </div>
 
-          <input type="text" id="fee" name="fee" placeholder="الرسوم (+200 دينار عراقي)" onChange={handleInputChange} />
+         
 
           <label htmlFor="extra">معلومات إضافية</label>
           <input type="text" id="extra" name="extra" placeholder="اختياري" onChange={handleInputChange} />

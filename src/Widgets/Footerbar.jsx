@@ -65,7 +65,7 @@ const Footerbar = () => {
             <Grid item xs={12} md={4}>
               <CtaBox>
                 <Box>
-                  <Typography variant="h6" sx={{ fontWeight: 'bold' }}>اعثر علينا</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 'bold' }}> موقعنا</Typography>
                   <Typography>1010 شارع، SW 54321، بغداد، العراق</Typography>
                 </Box>
                 <CtaIcon>
@@ -124,8 +124,8 @@ const Footerbar = () => {
             <Grid item xs={12} md={4}>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>اشترك</Typography>
               <Typography variant="body2" color="#000" mb={2} sx={{ lineHeight: 1.6 }}>
-                لا تفوت الاشتراك في آخر الأخبار، يرجى ملء النموذج أدناه.
-              </Typography>
+              لا تفوت فرصة الحصول على أحدث العروض. يرجى تعبئة النموذج أدناه للبقاء على اطلاع دائم.
+</Typography>
               <form action="#">
                 <TextField
                   variant="outlined"
