@@ -1,4 +1,3 @@
-// AuthProvider/index.jsx
 import React, { useEffect, useState, useContext } from 'react';
 import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword } from '../../xanoAuth';
 
@@ -18,7 +17,7 @@ export function AuthProvider({ children }) {
       try {
         const user = await getCurrentUser();
         setCurrentUser(user);
-        setUserLoggedIn(true);
+        setUserLoggedIn(!!user);
       } catch (error) {
         setCurrentUser(null);
         setUserLoggedIn(false);
@@ -36,7 +35,7 @@ export function AuthProvider({ children }) {
       setCurrentUser(user);
       setUserLoggedIn(true);
     } catch (error) {
-      throw error;
+      throw new Error(error.message);
     }
   };
 
@@ -46,14 +45,13 @@ export function AuthProvider({ children }) {
       setCurrentUser(null);
       setUserLoggedIn(false);
     } catch (error) {
-      console.error("Sign out error:", error);
+      console.error("خطأ في تسجيل الخروج:", error);
     }
   };
 
   const value = {
     currentUser,
     userLoggedIn,
-    setUserLoggedIn,
     loading,
     signUp,
     signOut,

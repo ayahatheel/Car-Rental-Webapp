@@ -37,7 +37,7 @@ const Login = () => {
     <div className="login-container" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="login-form">
         <h2>تسجيل الدخول</h2>
-        <p>مرحبا بك مجددا</p>
+        <p className='welcoming'>مرحبا بك مجددا</p>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <input
@@ -46,6 +46,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            onFocus={(e) => e.target.select()}
           />
           <input
             type="password"
@@ -53,6 +54,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            onFocus={(e) => e.target.select()}
           />
           <div className="button-container">
             <button type="submit" disabled={isSigningIn}>

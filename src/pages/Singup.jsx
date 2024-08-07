@@ -15,18 +15,28 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous errors
+
+    // Validate form fields
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
       setError('يرجى ملء جميع الحقول');
       return;
     }
+
+    if (password.length < 8) {
+      setError('يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('كلمات المرور غير متطابقة');
       return;
     }
+
     try {
       await signUp(email, password);
     } catch (error) {
-      setError('حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.');
+      setError(error.message);
     }
   };
 
@@ -38,18 +48,10 @@ function Signup() {
     <div className="signup-container" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="signup-form">
         <h2>أنشئ حسابك المجاني</h2>
-        <p>وادر حجوزاتك بسهولة!</p>
+        <p className='welcoming'>وادر حجوزاتك بسهولة!</p>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="name-fields">
-            <input
-              type="text"
-              placeholder="الاسم الثاني"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-              onFocus={(e) => e.target.select()}
-            />
             <input
               type="text"
               placeholder="الاسم الأول"
@@ -57,6 +59,16 @@ function Signup() {
               onChange={(e) => setFirstName(e.target.value)}
               required
               onFocus={(e) => e.target.select()}
+              className="first-name-input"
+            />
+            <input
+              type="text"
+              placeholder="الاسم الثاني"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              onFocus={(e) => e.target.select()}
+              className="last-name-input"
             />
           </div>
           <input
