@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import bgImage from "../Widgets/Images/formbg.png";
 import "../Widgets/singup.css";
 import { useAuth } from '../contexts/authContext';
@@ -100,7 +100,7 @@ function Signup() {
           </div>
         </form>
         <p className="login-link">
-          هل لديك حساب؟ <a href="/login">تسجيل الدخول</a>
+          هل لديك حساب؟ <Link to="/login">تسجيل الدخول</Link>
         </p>
       </div>
     </div>
