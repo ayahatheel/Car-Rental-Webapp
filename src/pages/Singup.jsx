@@ -3,6 +3,7 @@ import { Navigate, Link } from 'react-router-dom';
 import bgImage from "../Widgets/Images/formbg.png";
 import "../Widgets/singup.css";
 import { useAuth } from '../contexts/authContext';
+import Alert from '@mui/material/Alert';
 
 function Signup() {
   const { signUp, userLoggedIn } = useAuth();
@@ -49,7 +50,6 @@ function Signup() {
       <div className="signup-form">
         <h2>أنشئ حسابك المجاني</h2>
         <p className='welcoming'>وادر حجوزاتك بسهولة!</p>
-        {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="name-fields">
             <input
@@ -98,6 +98,12 @@ function Signup() {
           <div className="button-container">
             <button type="submit">→ سجل</button>
           </div>
+          {error && (
+            <Alert severity="error" sx={{ mt: 2 }} >
+              {error}
+            </Alert>
+          )}
+
         </form>
         <p className="login-link">
           هل لديك حساب؟ <Link to="/login">تسجيل الدخول</Link>

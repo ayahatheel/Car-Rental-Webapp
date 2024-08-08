@@ -9,6 +9,15 @@
   padding: 20px;
 }
 
+
+.custom-alert {
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 0px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .signup-form {
   background: rgba(255, 255, 255, 0.9);
   padding: 40px;
