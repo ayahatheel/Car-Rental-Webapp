@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { FaSearch } from "react-icons/fa";
-import "./SearchBar.css";
+import React, { useState, useContext } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import './SearchBar.css';
 import { CarContext } from '../components/CarContext';
 
 const SearchBar = ({ setResults }) => {
   const { carData } = useContext(CarContext);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   const handleChange = (value) => {
     setInput(value);

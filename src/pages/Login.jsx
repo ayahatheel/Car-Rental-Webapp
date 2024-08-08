@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
-import { doSignInWithEmailAndPassword } from '../xanoAuth';
 import { useAuth } from '../contexts/authContext';
 import bgImage from "../Widgets/Images/formbg.png";
 import "../Widgets/login.css";
 
 const Login = () => {
-  const { userLoggedIn, setUserLoggedIn } = useAuth();
+  const { userLoggedIn, signIn } = useAuth(); // Destructure signIn from useAuth
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,9 +17,7 @@ const Login = () => {
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        const user = await doSignInWithEmailAndPassword(email, password);
-        console.log("Login successful:", user); // Debugging: Log successful login
-        setUserLoggedIn(true);
+        await signIn(email, password); // Use signIn function from context
       } catch (error) {
         console.error("Login error:", error); // Debugging: Log the error
         setErrorMessage(error.message || "خطأ في تسجيل الدخول. يرجى المحاولة مرة أخرى.");

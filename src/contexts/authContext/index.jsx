@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword } from '../../xanoAuth';
+import { doSignOut, getCurrentUser, doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword } from '../../xanoAuth';
 
 const AuthContext = React.createContext();
 
@@ -49,12 +49,24 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const signIn = async (email, password) => {
+    try {
+      const user = await doSignInWithEmailAndPassword(email, password);
+      setCurrentUser(user);
+      setUserLoggedIn(true);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
   const value = {
     currentUser,
     userLoggedIn,
+    setUserLoggedIn, // Add this line
     loading,
     signUp,
     signOut,
+    signIn,
   };
 
   return (
