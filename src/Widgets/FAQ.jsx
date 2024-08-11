@@ -95,12 +95,16 @@ const FAQ = () => {
         <p>سؤالك ليس هنا؟</p>
         <Link component={Link} to="/Contactus">
           <Button
-            sx={{
-              color: "white",
-              width: "210px",
-              backgroundColor: "#E90224",
-              borderRadius: "10px",
-            }}
+          sx={{
+            color: 'white',
+            width: '140px',
+            backgroundColor: '#E90224',
+            borderRadius: '10px',
+            fontFamily: 'Tajawal, sans-serif',
+            '&:hover': {
+              backgroundColor: '#ff0033',
+            },
+          }}
           >
             تواصل معنا{" "}
           </Button>

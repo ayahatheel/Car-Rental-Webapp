@@ -51,6 +51,12 @@
   right: 10px; 
   z-index: 1;
   color: red; 
+  outline: none; /* Remove the default focus outline */
+}
+
+.close-button:focus {
+  outline: none; /* Ensure no blue border on focus */
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Optional custom focus style */
 }
 
 @media (max-width: 768px) {

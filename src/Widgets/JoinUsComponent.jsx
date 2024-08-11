@@ -21,7 +21,16 @@ const JoinUsComponent = () => {
         <Typography variant="body1" paragraph>
           هل تملك سيارة وتريد تأجيرها؟ انضم إلينا الآن وابدأ في كسب المال من خلال تأجير سيارتك عبر منصتنا.
         </Typography>
-        <Button variant="contained" color="primary" component={Link} to="/Contactus" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
+        <Button variant="contained" color="primary" component={Link} to="/Contactus"  sx={{
+                      color: 'white',
+                      width: '140px',
+                      backgroundColor: '#E90224',
+                      borderRadius: '10px',
+                      fontFamily: 'Tajawal, sans-serif',
+                      '&:hover': {
+                        backgroundColor: '#ff0033',
+                      },
+                    }}>
         اتصل بنا
       </Button>
       </Box>
@@ -42,7 +51,16 @@ const JoinUsComponent = () => {
         <Typography variant="body1" paragraph>
           نحن نبحث دائمًا عن شركاء جدد. إذا كنت تدير وكالة تأجير سيارات وترغب في الانضمام إلى شبكتنا، تواصل معنا الآن.
         </Typography>
-        <Button variant="contained" color="primary" component={Link} to="/Contactus" sx={{ color: 'white', width: '170px', backgroundColor: '#E90224', borderRadius: '10px', fontFamily: 'Tajawal, sans-serif' }}>
+        <Button variant="contained" color="primary" component={Link} to="/Contactus"  sx={{
+                      color: 'white',
+                      width: '140px',
+                      backgroundColor: '#E90224',
+                      borderRadius: '10px',
+                      fontFamily: 'Tajawal, sans-serif',
+                      '&:hover': {
+                        backgroundColor: '#ff0033',
+                      },
+                    }}>
         اتصل بنا
       </Button>
       </Box>
