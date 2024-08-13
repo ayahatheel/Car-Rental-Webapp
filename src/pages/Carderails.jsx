@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import CarRentalform from '../Widgets/CarRentalform';
 import Footer from '../components/Footer';
 import Feedback from '../Widgets/Feedback';
+import { Skeleton } from '@mui/material'; 
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -30,7 +31,15 @@ const CarDetails = () => {
   }, [id, carData, loading]);
 
   if (!car) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <Skeleton variant="rectangular" width="100%" height={400} /> {/* Carousel skeleton */}
+        <Skeleton variant="rectangular" width="100%" height={300} sx={{ marginTop: 2 }} /> {/* Form skeleton */}
+        <Skeleton variant="rectangular" width="100%" height={150} sx={{ marginTop: 2 }} /> {/* Feedback skeleton */}
+        <Footer />
+      </>
+    );
   }
 
   // Extract image URLs from query parameters
