@@ -92,8 +92,9 @@ const CarCard = ({ car }) => {
               </Box>
             </Box>
             <Box display="flex" justifyContent="space-between" mt={2} mb={2} className="price">
-              <Typography variant="body1">السعر</Typography>
               <Typography variant="h6">{price} دينار / يوم</Typography>
+                            <Typography variant="body1">السعر</Typography>
+
             </Box>
           </Link>
         </CardContent>

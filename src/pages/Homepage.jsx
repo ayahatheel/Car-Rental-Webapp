@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import Mainsentn from "../../src/Widgets/Mainsentn";
 import FAQ from "../../src/Widgets/FAQ";
 import CarCard from "../Widgets/CarCard";
-// import Ads from "../Widgets/Ads";
 import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
@@ -11,6 +9,7 @@ import Testimonial from "../Widgets/Testimonial";
 import { Typography, useMediaQuery } from '@mui/material'; 
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
+import { Skeleton } from '@mui/material'; // Import Skeleton from Material-UI
 
 function Homepage() {
   useEffect(() => {
@@ -32,10 +31,7 @@ function Homepage() {
   }, []);
 
   const isDesktop = useMediaQuery('(min-width:1280px)');
-
   const { loading, filteredCars } = useContext(CarContext);
-
-  if (loading) return <p>Loading...</p>;
 
   return (
     <>
@@ -62,18 +58,18 @@ function Homepage() {
       )}
 
       <div className="home-page">
-        {filteredCars.map(car => (
-          <CarCard key={car.id} car={car} />
-        ))}
+        {loading ? (
+          // Show skeletons while loading
+          Array.from(new Array(3)).map((_, index) => (
+            <Skeleton key={index} variant="rectangular" width={300} height={150} sx={{ margin: '10px' }} />
+          ))
+        ) : (
+          // Show car cards after loading
+          filteredCars.map(car => (
+            <CarCard key={car.id} car={car} />
+          ))
+        )}
       </div>
-
-      {/* <div className="button-container">
-        <Link to="/Carlisting">
-          <button className="load-button">المزيد من السيارات</button>
-        </Link>
-      </div> */}
- 
-      {/* <Ads/> */}
 
       <FAQ />
       <Chat />
