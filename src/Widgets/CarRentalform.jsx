@@ -16,7 +16,7 @@ function CarRentalform() {
     address: '',
     optional: '',
     documents: '',
-    fee: '',
+    fee: '',   
     extra: ''
   });
   const [isFormValid, setIsFormValid] = useState(false);
@@ -53,7 +53,7 @@ function CarRentalform() {
       ...formValues,
       [name]: value
     });
-  };
+  };   
 
   const handleDeliveryChange = (event) => {
     setDeliveryOption(event.target.value);

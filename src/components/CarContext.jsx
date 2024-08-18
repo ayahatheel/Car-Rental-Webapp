@@ -20,7 +20,7 @@ export const CarProvider = ({ children }) => {
       .catch(error => {
         console.error('Error fetching car data:', error);
         setLoading(false);
-      });
+      });     
   }, []);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
   } catch (error) {
     throw new Error(error.response?.data?.message || 'فشل في التسجيل');
   }
-};
+};   
 
 export const doSignInWithEmailAndPassword = async (email, password) => {
   try {

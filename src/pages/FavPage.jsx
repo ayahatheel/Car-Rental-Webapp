@@ -3,7 +3,7 @@ import { Grid, Typography, Container } from '@mui/material';
 import CarCard from '../Widgets/CarCard'; // Correct path to CarCard
 import { CarContext } from '../components/CarContext'; // Correct path to CarContext
 
-const ProfilePage = () => {
+const ProfilePage = () => {   
   const { carData } = useContext(CarContext);
   const [favoriteCars, setFavoriteCars] = useState([]);
 

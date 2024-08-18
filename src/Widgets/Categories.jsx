@@ -10,7 +10,7 @@ const categories = [
   { name: 'سيارات كهربائية' },
   { name: 'سيارات مدمجة' },
   { name: 'سيارات سيدان' },
-  { name: 'سيارات صغيرة' },
+  { name: 'سيارات صغيرة' },      
 ];
 
 const StyledButton = styled(Button)(({ theme }) => ({
