@@ -67,7 +67,9 @@ function Homepage() {
       <Grid
         container
         spacing={2}
-        sx={{ padding: '0 100px' }}
+        sx={{
+          padding: { xs: '0 16px', md: '0 100px' }, // Adjust padding for small screens
+        }}
       >
         {loading ? (
           // Show skeletons while loading
@@ -100,26 +102,26 @@ function Homepage() {
             marginTop: '30px',
             marginBottom: '30px',
             '& .MuiPaginationItem-root': {
-              color: '#000', // Black color for pagination text
-              border: 'none', // No border for minimalist look
+              color: '#000', 
+              border: 'none', 
               '&.Mui-selected': {
-                backgroundColor: '#d32f2f', // Red color for selected item
+                backgroundColor: '#d32f2f', 
                 color: '#fff',
                 '&:hover': {
-                  backgroundColor: '#b71c1c', // Slightly darker red on hover for selected item
+                  backgroundColor: '#b71c1c', 
                 },
               },
               '&:hover': {
-                backgroundColor: '#f5f5f5', // Light gray background on hover
+                backgroundColor: '#f5f5f5',
               },
             },
             '& .MuiPaginationItem-ellipsis': {
-              color: '#757575', // Gray color for ellipsis
+              color: '#757575', 
             },
             '& .MuiPagination-ul': {
               justifyContent: 'center',
               '& > li': {
-                margin: '0 2px 0 2px', // Small space between pagination items
+                margin: '0 2px 0 2px', 
               },
             },
           }}
