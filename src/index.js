@@ -11,6 +11,7 @@ import { CarProvider } from '../src/components/CarContext'; // Correct path to C
 import App from './App';
 import Layout from './components/Layout';
 import Carderails from './pages/Carderails';
+import ScrollToTop from './Widgets/ScrollToTop';
 
 const theme = createTheme({
   typography: {
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Router>
         <AuthProvider>
           <CarProvider>
+          <ScrollToTop />
             <Routes>
               <Route path="/" element={<Layout />} />
               <Route path="/car/:id" element={<Carderails />} />

@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Feedback.css';
 import { useAuth } from '../contexts/authContext'; 
 import { Rating } from '@mui/material';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const Feedback = () => {
+const Feedback = ({ selectedCarId }) => {
   const { currentUser } = useAuth(); 
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [feedbacks, setFeedbacks] = useState([
-    {
-      id: 1,
-      name: "User One",
-      location: "بغداد",
-      rating: 5,
-      comment: "استئجار نيسان جوك كان تغييرًا كبيرًا في مغامرتنا الخارجية. مساحة واسعة للأمتعة ومريحة للغاية للرحلات الطويلة!"
-    },
-    {
-      id: 2,
-      name: "User Two",
-      location: "بغداد",
-      rating: 5,
-      comment: "استئجار نيسان جوك كان تجربة رائعة! ميزات السيارة الحديثة، المقاعد المريحة، والأداء السلس جعلت كل رحلة ممتعة."
-    }
-  ]);
-
+  const [feedbacks, setFeedbacks] = useState([]);
   const [newFeedback, setNewFeedback] = useState({ name: '', location: '', rating: 0, comment: '' });
+
+  // Fetch feedbacks whenever the selected car changes
+  useEffect(() => {
+    setFeedbacks([]); // Clear feedbacks before fetching new ones
+    fetchFeedbacks(selectedCarId);
+  }, [selectedCarId]);
+
+  const fetchFeedbacks = (carId) => {
+    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback?car_id=${carId}`)
+      .then(response => response.json())
+      .then(data => {
+        setFeedbacks(data);
+      })
+      .catch(error => {
+        console.error('Error fetching feedbacks:', error);
+      });
+  };
 
   const handleLeaveFeedbackClick = () => {
     setIsFormVisible(true);
@@ -40,17 +41,39 @@ const Feedback = () => {
 
   const handleSubmitFeedback = () => {
     if (newFeedback.name && newFeedback.location && newFeedback.rating && newFeedback.comment) {
-      const feedback = { ...newFeedback, id: feedbacks.length + 1 };
-      setFeedbacks([...feedbacks, feedback]);
-      setNewFeedback({ name: '', location: '', rating: 0, comment: '' });
-      setIsFormVisible(false);
+      const feedback = { ...newFeedback, car_id: selectedCarId };
+
+      fetch('https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedback),
+      })
+      .then(response => response.json())
+      .then(data => {
+        setFeedbacks([...feedbacks, data]);
+        setNewFeedback({ name: '', location: '', rating: 0, comment: '' });
+        setIsFormVisible(false);
+      })
+      .catch(error => {
+        console.error('Error submitting feedback:', error);
+      });
     } else {
       alert("يرجى ملء جميع الحقول.");
     }
   };
 
   const handleDeleteFeedback = (id) => {
-    setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback/${id}`, {
+      method: 'DELETE',
+    })
+    .then(() => {
+      setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+    })
+    .catch(error => {
+      console.error('Error deleting feedback:', error);
+    });
   };
 
   return (
