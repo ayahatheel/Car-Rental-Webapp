@@ -124,6 +124,21 @@
     padding: 20px; /* Adjust padding */
   }
 
+  .HFAQ {
+    font-size: 2em;
+    margin: 0;
+    margin-right: 0px;
+    padding: 0;
+}
+
+.PFAQ {
+    font-size: 1em;
+    margin: 0;
+    margin-right: 0px;
+    font-weight: bold;
+    padding: 0;
+}
+
   .faq-box-footer {
     margin-right: 0; /* Remove right margin */
     margin-left: 20px; /* Add left margin */

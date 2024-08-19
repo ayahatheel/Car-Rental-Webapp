@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react';
 import { Box, Typography, Avatar, Grid, Card, CardContent, Container } from '@mui/material';
 import './Testimonial.css';
+import man1 from './Images/man1.png';
+import man2 from './Images/man2.png';
+import woman1 from './Images/woman1.png';
+
 
 const testimonials = [
   {
     name: "علي أحمد",
     title: "مدير مبيعات",
     testimonial: "تجربتي مع IraqiWheels كانت ممتازة. السيارة كانت نظيفة وفي حالة ممتازة، والخدمة كانت سريعة وموثوقة.",
-    img: "/path-to-avatar.jpg" // Replace with actual image path
+    img: man1 
   },
   {
     name: "سارة حسين",
     title: "أخصائية تسويق",
     testimonial: "إيجار سيارة من IraqiWheels جعل رحلتي سهلة ومريحة. الأسعار كانت معقولة والخدمة كانت رائعة.",
-    img: "/path-to-avatar.jpg" // Replace with actual image path
+    img: woman1
   },
   {
     name: "محمد علي",
     title: "مطور",
     testimonial: "IraqiWheels قدمت لي أفضل تجربة تأجير سيارات. السيارة كانت حديثة ونظيفة والخدمة كانت ممتازة.",
-    img: "/path-to-avatar.jpg" // Replace with actual image path
+    img: man2
   },
 ];
 
@@ -48,7 +52,7 @@ const Testimonial = () => {
   return (
     <Box className="iw-testimonial-section">
       <div className="fade-in">
-          <Typography variant="h5" sx={{ margin: '10px 100px 50px 0px', padding: 0, textAlign: 'right' }}>
+          <Typography variant="h5" sx={{ margin: '10px 100px 40px 0px', padding: 0, textAlign: 'right' }}>
           اسمع من عملاء السعداء
           </Typography>        
         </div>

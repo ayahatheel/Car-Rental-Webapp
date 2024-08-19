@@ -6,7 +6,7 @@ import "../Widgets/CarCard.css";
 import Categories from "../Widgets/Categories";
 import Chat from "../Widgets/Chat";
 import Testimonial from "../Widgets/Testimonial";
-import { Typography, useMediaQuery, Pagination, Grid, IconButton, Menu, MenuItem, Tooltip } from '@mui/material'; 
+import { Typography, useMediaQuery, Pagination, Grid, IconButton, Menu, MenuItem, Tooltip, ButtonGroup, Button } from '@mui/material'; 
 import { CarContext } from '../components/CarContext';
 import AdvertisementModal from "../Widgets/AdvertisementModal";
 import { Skeleton } from '@mui/material';
@@ -37,6 +37,7 @@ function Homepage() {
   }, []);
 
   const isDesktop = useMediaQuery('(min-width:1280px)');
+  const isMobile = useMediaQuery('(max-width:600px)');
   const { loading, filteredCars } = useContext(CarContext);
 
   // Sort cars based on the selected sort order
@@ -78,69 +79,104 @@ function Homepage() {
 
       <Categories />
 
-      {isDesktop && (
+      {(isDesktop || isMobile) && (
         <div 
-          className="fade-in" 
           style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
             alignItems: 'center', 
-            marginRight: '100px', 
-            marginLeft: '100px', 
-
+            marginRight: isMobile ? '16px' : '100px', 
+            marginLeft: isMobile ? '16px' : '100px', 
           }}
         >
-          <Tooltip title="ترتيب حسب السعر" placement="top">
-            <IconButton 
-              aria-controls="sort-menu" 
-              aria-haspopup="true" 
-              onClick={handleClick} 
-              sx={{
-                backgroundColor: 'rgba(255, 255, 255, 0.9)', 
-                color: '#d32f2f', 
-                '&:hover': { 
-                  backgroundColor: '#f5f5f5', 
-                  transform: 'scale(1.1)',
-                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-                }, 
-                marginLeft: '10px',
-                borderRadius: '12px',
-                padding: '10px',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.15)',
-              }}
-            >
-              <FilterListIcon fontSize="large" />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            id="sort-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            sx={{ 
-              '& .MuiMenuItem-root': {
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                color: '#d32f2f',
-                '&:hover': {
-                  backgroundColor: '#f5f5f5',
-                },
-              },
-            }}
-          >
-            <MenuItem onClick={() => handleSortOrder('asc')}>من الأرخص إلى الأغلى</MenuItem>
-            <MenuItem onClick={() => handleSortOrder('desc')}>من الأغلى إلى الأرخص</MenuItem>
-          </Menu>
+          {isMobile ? (
+            <ButtonGroup variant="outlined" fullWidth sx={{ marginBottom: '20px', marginLeft:'10px', marginRight:'10px', backgroundColor: '#fff' }}>
+              <Button
+                startIcon={<FilterListIcon />}
+                sx={{
+                  color: '#d32f2f',
+                  borderColor: '#d32f2f',
+                  '&:hover': {
+                    backgroundColor: '#f5f5f5',
+                    borderColor: '#d32f2f',
+                  },
+                  borderRadius: '12px',
+                }}
+                onClick={() => handleSortOrder('asc')}
+              >
+                من الأرخص
+              </Button>
+              <Button
+                startIcon={<FilterListIcon />}
+                sx={{
+                  color: '#d32f2f',
+                  borderColor: '#d32f2f',
+                  '&:hover': {
+                    backgroundColor: '#f5f5f5',
+                    borderColor: '#d32f2f',
+                  },
+                  borderRadius: '12px',
+                }}
+                onClick={() => handleSortOrder('desc')}
+              >
+                من الأغلى
+              </Button>
+            </ButtonGroup>
+          ) : (
+            <>
+              <Tooltip title="ترتيب حسب السعر" placement="top">
+                <IconButton 
+                  aria-controls="sort-menu" 
+                  aria-haspopup="true" 
+                  onClick={handleClick} 
+                  sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)', 
+                    color: '#d32f2f', 
+                    '&:hover': { 
+                      backgroundColor: '#f5f5f5', 
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+                    }, 
+                    marginLeft: '10px',
+                    borderRadius: '12px',
+                    padding: '10px',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.15)',
+                  }}
+                >
+                  <FilterListIcon fontSize="large" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                id="sort-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                sx={{ 
+                  '& .MuiMenuItem-root': {
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    color: '#d32f2f',
+                    '&:hover': {
+                      backgroundColor: '#f5f5f5',
+                    },
+                  },
+                }}
+              >
+                <MenuItem onClick={() => handleSortOrder('asc')}>من الأرخص إلى الأغلى</MenuItem>
+                <MenuItem onClick={() => handleSortOrder('desc')}>من الأغلى إلى الأرخص</MenuItem>
+              </Menu>
 
-          <Typography variant="h5" sx={{ padding: 0, textAlign: 'right', fontWeight: 'bold', color: '#3c3c3c' }}>
-            استكشف اختياراتك
-          </Typography>
+              <Typography variant="h5" sx={{ padding: 0, textAlign: 'right', fontWeight: 'bold', color: '#3c3c3c' }}>
+                استكشف اختياراتك
+              </Typography>
+            </>
+          )}
         </div>
       )}
 
-      <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right', color: '#757575' }}>
+      <Typography variant="h6" sx={{ margin: '0 100px 30px 0px', padding: 0, textAlign: 'right', color: '#757575', display: isMobile ? 'none' : 'block' }}>
         واختر سيارتك المثالية لمغامرتك القادمة
       </Typography>
 
@@ -207,7 +243,6 @@ function Homepage() {
           }}
         />
       )}
-
       <FAQ />
       <Chat />
       <Testimonial />
