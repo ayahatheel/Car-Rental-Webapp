@@ -49,11 +49,26 @@ function CarRentalform() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === 'fee') {
+        const iraqiPhoneNumberPattern = /^(077|075|078)\d{8}$/;
+        if (!iraqiPhoneNumberPattern.test(value)) {
+            setAlertMessage('رقم الهاتف غير صالح. يجب أن يبدأ بـ 077 أو 075 أو 078 وأن يكون مكونًا من 11 رقمًا.');
+            setAlertSeverity('error');
+            setIsFormValid(false);
+        } else {
+            setAlertMessage('');
+            setAlertSeverity('success');
+            setIsFormValid(true);
+        }
+    }
+
     setFormValues({
-      ...formValues,
-      [name]: value
+        ...formValues,
+        [name]: value
     });
-  };   
+};
+
 
   const handleDeliveryChange = (event) => {
     setDeliveryOption(event.target.value);
@@ -125,13 +140,23 @@ function CarRentalform() {
         <h3>الميزات والمرافق:</h3>
         <p>{carData.Features_and_Amenities}</p>
         <div className="rental-details">
-          <p><strong>عدد الأيام:</strong> <span>{carData.price} دينار عراقي/اليوم</span></p>
+          <p><strong>سعر تأجيير السيارة</strong> <span>{carData.price}دينار عراقي</span></p>
+          <p><strong>عدد الايام</strong></p>
           <div className="days-selector">
             <button className="day-button" onClick={decreaseDays}>-</button>
             <span className="days-value">{days}</span>
             <button className="day-button" onClick={increaseDays}>+</button>
           </div>
-          <p className="total-price">استئجار السيارة - {totalPrice} دينار عراقي/ {days} يوم</p>
+          <p><strong>المبلغ الكلي للتأجيير:</strong></p>
+          <div className="total-price-container" style={{ marginTop: '20px', textAlign: 'center', padding: '10px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
+  <p style={{ fontSize: '24px', fontWeight: 'bold', margin: '5px 0', color: '#e53935' }}>
+    {totalPrice} دينار عراقي
+  </p>
+  <p style={{ fontSize: '16px', color: '#555' }}>
+    لـ {days} يوم
+  </p>
+</div>
+
         </div>
 
           {/* Checkbox for Rental Agreement */}
