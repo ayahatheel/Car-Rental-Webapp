@@ -11,17 +11,18 @@ const Feedback = ({ selectedCarId }) => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [newFeedback, setNewFeedback] = useState({ name: '', location: '', rating: 0, comment: '' });
 
-  // Fetch feedbacks whenever the selected car changes
   useEffect(() => {
     setFeedbacks([]); // Clear feedbacks before fetching new ones
     fetchFeedbacks(selectedCarId);
   }, [selectedCarId]);
 
   const fetchFeedbacks = (carId) => {
-    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback?car_id=${carId}`)
+    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:55e70dMC/comments`)
       .then(response => response.json())
       .then(data => {
-        setFeedbacks(data);
+        // Client-side filter
+        const filteredFeedbacks = data.filter(comment => comment.car_id === parseInt(carId));
+        setFeedbacks(filteredFeedbacks);
       })
       .catch(error => {
         console.error('Error fetching feedbacks:', error);
@@ -41,9 +42,9 @@ const Feedback = ({ selectedCarId }) => {
 
   const handleSubmitFeedback = () => {
     if (newFeedback.name && newFeedback.location && newFeedback.rating && newFeedback.comment) {
-      const feedback = { ...newFeedback, car_id: selectedCarId };
+      const feedback = { ...newFeedback, car_id: selectedCarId }; // Add car_id to feedback
 
-      fetch('https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback', {
+      fetch('https://x8ki-letl-twmt.n7.xano.io/api:55e70dMC/comments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +66,7 @@ const Feedback = ({ selectedCarId }) => {
   };
 
   const handleDeleteFeedback = (id) => {
-    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:NAYslnAf/carfeedback/${id}`, {
+    fetch(`https://x8ki-letl-twmt.n7.xano.io/api:55e70dMC/comments/${id}`, {
       method: 'DELETE',
     })
     .then(() => {

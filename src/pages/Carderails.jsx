@@ -42,7 +42,6 @@ const CarDetails = () => {
     );
   }
 
-  // Extract image URLs from query parameters
   const query = new URLSearchParams(location.search);
   const carImageUrl1 = query.get('image1');
   const carImageUrl2 = query.get('image2');
@@ -53,7 +52,8 @@ const CarDetails = () => {
       <Header />
       <HoverCarousel images={images} />
       <CarRentalform />
-      <Feedback />
+      {/* Pass the selected car ID to the Feedback component */}
+      <Feedback selectedCarId={id} />
       <Footer />
     </>
   );
