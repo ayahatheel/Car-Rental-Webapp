@@ -52,7 +52,6 @@ const CarDetails = () => {
       <Header />
       <HoverCarousel images={images} />
       <CarRentalform />
-      {/* Pass the selected car ID to the Feedback component */}
       <Feedback selectedCarId={id} />
       <Footer />
     </>
