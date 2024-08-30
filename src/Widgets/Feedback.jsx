@@ -9,7 +9,7 @@ const Feedback = ({ selectedCarId }) => {
   const { currentUser } = useAuth(); 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [feedbacks, setFeedbacks] = useState([]);
-  const [newFeedback, setNewFeedback] = useState({ name: '', location: '', rating: 0, comment: '' });
+  const [newFeedback, setNewFeedback] = useState({ name: '', rating: 0, comment: '' });
 
   useEffect(() => {
     setFeedbacks([]); // Clear feedbacks before fetching new ones
@@ -41,7 +41,7 @@ const Feedback = ({ selectedCarId }) => {
   };
 
   const handleSubmitFeedback = () => {
-    if (newFeedback.name && newFeedback.location && newFeedback.rating && newFeedback.comment) {
+    if (newFeedback.name && newFeedback.rating && newFeedback.comment) {
       const feedback = { ...newFeedback, car_id: selectedCarId }; // Add car_id to feedback
 
       fetch('https://x8ki-letl-twmt.n7.xano.io/api:55e70dMC/comments', {
@@ -54,7 +54,7 @@ const Feedback = ({ selectedCarId }) => {
       .then(response => response.json())
       .then(data => {
         setFeedbacks([...feedbacks, data]);
-        setNewFeedback({ name: '', location: '', rating: 0, comment: '' });
+        setNewFeedback({ name: '', rating: 0, comment: '' });
         setIsFormVisible(false);
       })
       .catch(error => {
@@ -88,7 +88,7 @@ const Feedback = ({ selectedCarId }) => {
           {feedbacks.map((feedback) => (
             <div key={feedback.id} className="feedback-card">
               <div className="feedback-header">
-                <span className="feedback-name">{feedback.name} - {feedback.location}</span>
+                <span className="feedback-name">{feedback.name}</span>
                 <Rating value={feedback.rating} readOnly />
                 {currentUser && feedback.name === currentUser.name && (
                   <IconButton onClick={() => handleDeleteFeedback(feedback.id)}>
@@ -112,14 +112,6 @@ const Feedback = ({ selectedCarId }) => {
               placeholder="أدخل اسمك" 
               className="feedback-input" 
               value={newFeedback.name}
-              onChange={handleInputChange}
-            />
-            <input 
-              type="text" 
-              name="location"
-              placeholder="أدخل موقعك" 
-              className="feedback-input" 
-              value={newFeedback.location}
               onChange={handleInputChange}
             />
             <div className="rating-section">

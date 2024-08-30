@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/authContext'; 
+// import { useAuth } from '../contexts/authContext'; 
 import { Alert, Checkbox, Button, Dialog, DialogTitle, DialogContent, DialogActions, FormControlLabel } from '@mui/material';
 import "./CarRentalform.css";
 
 function CarRentalform() {
-  const { currentUser } = useAuth(); 
+  // const { currentUser } = useAuth(); 
   const [carData, setCarData] = useState(null);
   const [days, setDays] = useState(1);
   const [deliveryOption, setDeliveryOption] = useState('');
@@ -99,6 +99,8 @@ function CarRentalform() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const payload = {
+      id: parseInt(id, 10),
+      created_at: new Date().toISOString(),
       username: formValues.fullName,
       daysnumber: days,
       airport: formValues.delivery === 'airport',
@@ -109,14 +111,13 @@ function CarRentalform() {
       idcard: formValues.documents === 'personal-id',
       fee: parseInt(formValues.fee, 10),
       optdetails: formValues.extra,
-      carId: parseInt(id, 10),
+      carId: carData.id,
       carName: carData.Car_name,
       carPricePerDay: carData.price,
-      userEmail: currentUser?.email,
       totalPrice: totalPrice
     };
 
-    axios.post('https://x8ki-letl-twmt.n7.xano.io/api:YxBomh6q/car_req', payload)
+    axios.post('https://x8ki-letl-twmt.n7.xano.io/api:-Scv3IVp/car_requests', payload)
       .then(response => {
         setAlertMessage('تم إرسال النموذج بنجاح!');
         setAlertSeverity('success');
@@ -140,7 +141,7 @@ function CarRentalform() {
         <h3>الميزات والمرافق:</h3>
         <p>{carData.Features_and_Amenities}</p>
         <div className="rental-details">
-          <p><strong>سعر تأجيير السيارة</strong> <span>{carData.price}دينار عراقي</span></p>
+          <p><strong>سعر تأجيير السيارة</strong> <span>{carData.price} دينار عراقي</span></p>
           <p><strong>عدد الايام</strong></p>
           <div className="days-selector">
             <button className="day-button" onClick={decreaseDays}>-</button>
@@ -149,71 +150,67 @@ function CarRentalform() {
           </div>
           <p><strong>المبلغ الكلي للتأجيير:</strong></p>
           <div className="total-price-container" style={{ marginTop: '20px', textAlign: 'center', padding: '10px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
-  <p style={{ fontSize: '24px', fontWeight: 'bold', margin: '5px 0', color: '#e53935' }}>
-    {totalPrice} دينار عراقي
-  </p>
-  <p style={{ fontSize: '16px', color: '#555' }}>
-    لـ {days} يوم
-  </p>
-</div>
-
+            <p style={{ fontSize: '24px', fontWeight: 'bold', margin: '5px 0', color: '#e53935' }}>
+              {totalPrice} دينار عراقي
+            </p>
+            <p style={{ fontSize: '16px', color: '#555' }}>
+              لـ {days} يوم
+            </p>
+          </div>
         </div>
 
-          {/* Checkbox for Rental Agreement */}
-          <div style={{ marginTop: '20px' }}>
-  <FormControlLabel
-    control={
-      <Checkbox
-        checked={checked}
-        onChange={handleCheckboxChange}
-        style={{ color: '#e53935' }} 
-      />
-    }
-    label={
-      <span style={{ color: 'black', fontWeight: 'bold', fontSize: '16px', fontFamily: 'Tajawal, sans-serif', letterSpacing: '0.5px' }}> {/* Set text color to red */}
-        أوافق على
-        <Button variant="text" style={{ color: '#e53935', fontSize: '16px' }} onClick={handleClickOpen}>
-          شروط الاتفاقية
-        </Button>
-      </span>
-    }
-    style={{ marginLeft: '8px' }} 
-  />
-</div>
+        {/* Checkbox for Rental Agreement */}
+        <div style={{ marginTop: '20px' }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={handleCheckboxChange}
+                style={{ color: '#e53935' }} 
+              />
+            }
+            label={
+              <span style={{ color: 'black', fontWeight: 'bold', fontSize: '16px', fontFamily: 'Tajawal, sans-serif', letterSpacing: '0.5px' }}>
+                أوافق على
+                <Button variant="text" style={{ color: '#e53935', fontSize: '16px' }} onClick={handleClickOpen}>
+                  شروط الاتفاقية
+                </Button>
+              </span>
+            }
+            style={{ marginLeft: '8px' }} 
+          />
+        </div>
 
-
-
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle style={{ textAlign: 'right', fontWeight: 'bold' }}>اتفاقية الإيجار</DialogTitle>
-            <DialogContent style={{ textAlign: 'right', lineHeight: '1.6' }}>
-              <p>بموجب هذه الاتفاقية، فإن المستأجر يوافق على الالتزام بالشروط التالية:</p>
-              <ul style={{ paddingRight: '20px' }}>
-                <li>يجب أن يكون المستأجر حاملًا لرخصة قيادة سارية المفعول طوال فترة الإيجار.</li>
-                <li>يجب أن يكون عمر المستأجر 21 عامًا أو أكبر.</li>
-                <li>المركبة مؤمنة ضد الحوادث والأضرار وفقًا لشروط وأحكام بوليصة التأمين الخاصة بالشركة.</li>
-                <li>المستأجر مسؤول عن دفع أي غرامات ناتجة عن مخالفات المرور التي تقع خلال فترة الإيجار.</li>
-                <li>لا يجوز استخدام المركبة لأغراض غير قانونية أو في أنشطة مخالفة للقوانين.</li>
-                <li>يحظر نقل المواد الخطرة أو المتفجرة في المركبة.</li>
-                <li>يجب إعادة المركبة في حالة نظيفة وبحالة جيدة كما تم استلامها.</li>
-                <li>المستأجر مسؤول عن أي أضرار تلحق بالمركبة نتيجة الإهمال أو الاستخدام غير السليم.</li>
-                <li>الوقود المستخدم في المركبة يجب أن يكون من النوع الموصى به من قبل الشركة.</li>
-                <li>لا يجوز للمستأجر السماح لأي شخص آخر بقيادة المركبة دون موافقة الشركة.</li>
-                <li>في حالة الحوادث، يجب على المستأجر إبلاغ الشرطة وشركة التأمين فورًا.</li>
-                <li>لا يجوز استخدام المركبة في السباقات أو القيادة بطريقة تعرض الآخرين للخطر.</li>
-                <li>المركبة يجب أن لا تغادر حدود الدولة دون إذن مسبق من الشركة.</li>
-                <li>تحتفظ الشركة بحقها في إنهاء العقد واستعادة المركبة في أي وقت إذا تبين أن المستأجر قد انتهك أيًا من الشروط.</li>
-                <li>جميع المدفوعات المتعلقة بالإيجار يجب أن تتم مسبقًا قبل استلام المركبة.</li>
-                <li>في حالة التأخير في إعادة المركبة، قد يتم فرض رسوم إضافية على المستأجر.</li>
-                <li>هذه الاتفاقية تخضع لقوانين الدولة وتفسر بموجبها.</li>
-              </ul>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} style={{ color: 'red', fontWeight: 'bold' }}>
-                موافق
-              </Button>
-            </DialogActions>
-          </Dialog>
-
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle style={{ textAlign: 'right', fontWeight: 'bold' }}>اتفاقية الإيجار</DialogTitle>
+          <DialogContent style={{ textAlign: 'right', lineHeight: '1.6' }}>
+            <p>بموجب هذه الاتفاقية، فإن المستأجر يوافق على الالتزام بالشروط التالية:</p>
+            <ul style={{ paddingRight: '20px' }}>
+              <li>يجب أن يكون المستأجر حاملًا لرخصة قيادة سارية المفعول طوال فترة الإيجار.</li>
+              <li>يجب أن يكون عمر المستأجر 21 عامًا أو أكبر.</li>
+              <li>المركبة مؤمنة ضد الحوادث والأضرار وفقًا لشروط وأحكام بوليصة التأمين الخاصة بالشركة.</li>
+              <li>المستأجر مسؤول عن دفع أي غرامات ناتجة عن مخالفات المرور التي تقع خلال فترة الإيجار.</li>
+              <li>لا يجوز استخدام المركبة لأغراض غير قانونية أو في أنشطة مخالفة للقوانين.</li>
+              <li>يحظر نقل المواد الخطرة أو المتفجرة في المركبة.</li>
+              <li>يجب إعادة المركبة في حالة نظيفة وبحالة جيدة كما تم استلامها.</li>
+              <li>المستأجر مسؤول عن أي أضرار تلحق بالمركبة نتيجة الإهمال أو الاستخدام غير السليم.</li>
+              <li>الوقود المستخدم في المركبة يجب أن يكون من النوع الموصى به من قبل الشركة.</li>
+              <li>لا يجوز للمستأجر السماح لأي شخص آخر بقيادة المركبة دون موافقة الشركة.</li>
+              <li>في حالة الحوادث، يجب على المستأجر إبلاغ الشرطة وشركة التأمين فورًا.</li>
+              <li>لا يجوز استخدام المركبة في السباقات أو القيادة بطريقة تعرض الآخرين للخطر.</li>
+              <li>المركبة يجب أن لا تغادر حدود الدولة دون إذن مسبق من الشركة.</li>
+              <li>تحتفظ الشركة بحقها في إنهاء العقد واستعادة المركبة في أي وقت إذا تبين أن المستأجر قد انتهك أيًا من الشروط.</li>
+              <li>جميع المدفوعات المتعلقة بالإيجار يجب أن تتم مسبقًا قبل استلام المركبة.</li>
+              <li>في حالة التأخير في إعادة المركبة، قد يتم فرض رسوم إضافية على المستأجر.</li>
+              <li>هذه الاتفاقية تخضع لقوانين الدولة وتفسر بموجبها.</li>
+            </ul>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} style={{ color: 'red', fontWeight: 'bold' }}>
+              موافق
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
 
       <div className="rental-form">
@@ -254,8 +251,6 @@ function CarRentalform() {
 
           <label htmlFor="extra">معلومات إضافية</label>
           <input type="text" id="extra" name="extra" placeholder="اختياري" onChange={handleInputChange} />
-
-        
 
           <button type="submit" className={`submit-button ${isFormValid ? 'enabled' : 'disabled'}`} disabled={!isFormValid}>استئجار السيارة</button>
         </form>
