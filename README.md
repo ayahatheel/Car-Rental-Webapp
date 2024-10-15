@@ -42,4 +42,4 @@
 
 ## 📞 Contact
 
-For any questions or suggestions, feel free to reach out via email at [ayah.atheel@example.com](mailto:ayah.atheel@example.com). We'd love to hear from you!
+For any questions or suggestions, feel free to reach out via email at [ayah.atheel@gmail.com](mailto:ayah.atheel@gmail.com). I would love to hear from you!
